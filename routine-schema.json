@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Niva Routine Template",
+  "type": "object",
+  "required": ["id", "title", "phases"],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "setup": {
+      "type": "object",
+      "properties": {
+        "steps": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/step" }
+        }
+      }
+    },
+    "phases": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/phase" }
+    },
+    "triggers": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/trigger" }
+    }
+  },
+  "definitions": {
+    "step": {
+      "type": "object",
+      "required": ["id", "type", "description"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["action", "parameter_request", "message"]
+        },
+        "description": { "type": "string" },
+        "parameterKey": { "type": "string" },
+        "timeOfDay": { "type": "string" },
+        "expectedDurationMinutes": { "type": "integer" },
+        "expectConfirmation": { "type": "boolean" }
+      }
+    },
+    "phase": {
+      "type": "object",
+      "required": ["id", "title", "condition", "steps"],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "condition": { "$ref": "#/definitions/condition" },
+        "steps": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/step" }
+        }
+      }
+    },
+    "condition": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["AFTER_DAYS", "AFTER_PHASE_COMPLETIONS", "AFTER_DURATION", "AFTER_USER_CONFIRMATION"]
+        },
+        "value": { "type": "integer" },
+        "phaseId": { "type": "string" },
+        "reference": { "type": "string" },
+        "duration": { "type": "string" },
+        "confirmationKey": { "type": "string" }
+      }
+    },
+    "trigger": {
+      "type": "object",
+      "required": ["id", "condition", "effect"],
+      "properties": {
+        "id": { "type": "string" },
+        "condition": { "$ref": "#/definitions/condition" },
+        "effect": { "$ref": "#/definitions/effect" }
+      }
+    },
+    "effect": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["SendMessage", "CreateTask"]
+        },
+        "message": { "type": "string" },
+        "taskDescription": { "type": "string" },
+        "confirmationKey": { "type": "string" }
+      }
+    }
+  }
+}
