@@ -1,0 +1,85 @@
+{
+  "title": "Simple Meditation Routine",
+  "version": "1.0",
+  "description": "A minimalist daily meditation practice to cultivate mindfulness and inner peace.",
+  "setupSteps": [
+    {
+      "type": "parameter_request",
+      "parameterName": "meditationTime",
+      "parameterType": "LOCAL_TIME",
+      "prompt": "What time works best for your daily meditation? (e.g., 07:30)",
+      "defaultValue": "07:30"
+    },
+    {
+      "type": "parameter_request",
+      "parameterName": "sessionLength",
+      "parameterType": "INT",
+      "prompt": "How many minutes would you like to meditate? (e.g., 10)",
+      "defaultValue": "10"
+    }
+  ],
+  "phases": [
+    {
+      "title": "Daily Mindfulness",
+      "id": "daily-mindfulness",
+      "condition": {
+        "type": "AFTER_DAYS",
+        "value": 0
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🧘‍♀️ Time for your daily meditation practice. Find a quiet, comfortable space.",
+          "timeOfDay": "${meditationTime}"
+        },
+        {
+          "type": "action",
+          "message": "Sit comfortably, close your eyes, and focus on your breath for ${sessionLength} minutes",
+          "timeOfDay": "${meditationTime}"
+        },
+        {
+          "type": "message",
+          "message": "🌟 Beautiful! You've completed your meditation. Notice how you feel and carry this peace with you.",
+          "timeOfDay": "${meditationTime}"
+        }
+      ],
+      "schedule": {
+        "expression": "DAILY"
+      }
+    }
+  ],
+  "triggers": [
+    {
+      "condition": {
+        "type": "AFTER_DAYS",
+        "value": 7
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎉 One week of consistent meditation! You're building a powerful mindfulness practice."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DAYS",
+        "value": 30
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🏆 30 days of meditation mastery! Your mind is clearer, calmer, and more focused than ever."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DAYS",
+        "value": 100
+      },
+      "effect": {
+        "type": "CREATE_TASK",
+        "title": "Reflect on Your Meditation Journey",
+        "description": "You've achieved 100 days of meditation! Take time to reflect on how this practice has transformed your life and consider deepening your practice.",
+        "expiryDate": "2025-12-31T23:59:59Z"
+      }
+    }
+  ]
+} 

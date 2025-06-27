@@ -1,0 +1,110 @@
+{
+  "title": "Weekly Exercise Routine",
+  "version": "1.0",
+  "description": "A balanced weekly exercise routine with different workout types to build strength, cardio, and flexibility.",
+  "setupSteps": [
+    {
+      "type": "parameter_request",
+      "parameterName": "workoutTime",
+      "parameterType": "LOCAL_TIME",
+      "prompt": "What time would you like to work out? (e.g., 06:30)",
+      "defaultValue": "06:30"
+    },
+    {
+      "type": "parameter_request",
+      "parameterName": "fitnessLevel",
+      "parameterType": "STRING",
+      "prompt": "What's your current fitness level? (beginner/intermediate/advanced)",
+      "defaultValue": "beginner"
+    }
+  ],
+  "phases": [
+    {
+      "title": "Weekly Fitness",
+      "id": "weekly-fitness",
+      "condition": {
+        "type": "AFTER_DAYS",
+        "value": 0
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "💪 Monday Motivation: Strength training day! Time to build those muscles.",
+          "timeOfDay": "${workoutTime}"
+        },
+        {
+          "type": "action",
+          "message": "Complete a 30-minute strength training workout focusing on upper body",
+          "timeOfDay": "${workoutTime}"
+        },
+        {
+          "type": "message",
+          "message": "🏃‍♀️ Wednesday Cardio: Get your heart pumping!",
+          "timeOfDay": "${workoutTime}"
+        },
+        {
+          "type": "action",
+          "message": "Do 30 minutes of cardio (running, cycling, dancing, or HIIT)",
+          "timeOfDay": "${workoutTime}"
+        },
+        {
+          "type": "message",
+          "message": "🦵 Friday Power: Lower body strength day!",
+          "timeOfDay": "${workoutTime}"
+        },
+        {
+          "type": "action",
+          "message": "Complete a 30-minute lower body strength workout",
+          "timeOfDay": "${workoutTime}"
+        },
+        {
+          "type": "message",
+          "message": "🧘‍♀️ Sunday Stretch: Active recovery with yoga or stretching.",
+          "timeOfDay": "${workoutTime}"
+        },
+        {
+          "type": "action",
+          "message": "Do 20-30 minutes of yoga, stretching, or light walking",
+          "timeOfDay": "${workoutTime}"
+        }
+      ],
+      "schedule": {
+        "expression": "WEEKLY"
+      }
+    }
+  ],
+  "triggers": [
+    {
+      "condition": {
+        "type": "AFTER_DAYS",
+        "value": 7
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎯 First week complete! You're building a sustainable fitness habit."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DAYS",
+        "value": 30
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🏆 One month of consistent exercise! Your body is getting stronger every day."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DAYS",
+        "value": 90
+      },
+      "effect": {
+        "type": "CREATE_TASK",
+        "title": "Fitness Progress Assessment",
+        "description": "After 3 months of regular exercise, assess your progress! Take measurements, photos, or fitness tests to see how far you've come.",
+        "expiryDate": "2025-12-31T23:59:59Z"
+      }
+    }
+  ]
+} 
