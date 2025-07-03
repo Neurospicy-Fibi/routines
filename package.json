@@ -1,0 +1,27 @@
+{
+  "name": "routines",
+  "version": "1.0.0",
+  "description": "> **Community-created routine templates for neurodivergent brains**",
+  "main": "validate-routines.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Neurospicy-Niva/routines.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Neurospicy-Niva/routines/issues"
+  },
+  "homepage": "https://github.com/Neurospicy-Niva/routines#readme",
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}

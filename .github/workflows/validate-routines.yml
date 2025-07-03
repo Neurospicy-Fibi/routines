@@ -1,115 +1,21 @@
 name: Validate Routine Templates
 
 on:
-  pull_request:
-    paths:
-      - 'examples/*.json'
-      - 'routine-schema.json'
   push:
-    paths:
-      - 'examples/*.json'
-      - 'routine-schema.json'
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  validate-json:
+  validate:
     runs-on: ubuntu-latest
-    name: Validate JSON Schema
-    
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        
-    - name: Install JSON schema validator
-      run: npm install -g ajv-cli
-      
-    - name: Validate routine templates
-      run: |
-        echo "🔍 Validating routine templates against schema..."
-        
-        # Check if schema file exists
-        if [ ! -f "routine-schema.json" ]; then
-          echo "❌ Schema file not found!"
-          exit 1
-        fi
-        
-        # Validate each routine file
-        for file in examples/*.json; do
-          if [ -f "$file" ]; then
-            echo "📋 Validating $file..."
-            if ajv validate -s routine-schema.json -d "$file"; then
-              echo "✅ $file is valid"
-            else
-              echo "❌ $file has validation errors"
-              exit 1
-            fi
-          fi
-        done
-        
-        echo "🎉 All routine templates are valid!"
-        
-    - name: Check for required fields
-      run: |
-        echo "🔍 Checking for required fields in routines..."
-        
-        for file in examples/*.json; do
-          if [ -f "$file" ]; then
-            echo "📋 Checking $file..."
-            
-            # Check for required fields using jq
-            if ! jq -e '.title' "$file" > /dev/null; then
-              echo "❌ $file missing 'title' field"
-              exit 1
-            fi
-            
-            if ! jq -e '.description' "$file" > /dev/null; then
-              echo "❌ $file missing 'description' field"
-              exit 1
-            fi
-            
-            if ! jq -e '.phases' "$file" > /dev/null; then
-              echo "❌ $file missing 'phases' field"
-              exit 1
-            fi
-            
-            echo "✅ $file has all required fields"
-          fi
-        done
-        
-        echo "🎉 All routines have required fields!"
-        
-    - name: Check for neurodivergent-friendly language
-      run: |
-        echo "🧠 Checking for neurodivergent-friendly language..."
-        
-        # Look for potentially problematic terms
-        PROBLEMATIC_TERMS=("normal" "should" "must" "failure" "lazy" "discipline")
-        
-        for file in examples/*.json; do
-          if [ -f "$file" ]; then
-            echo "📋 Checking language in $file..."
-            
-            for term in "${PROBLEMATIC_TERMS[@]}"; do
-              if grep -i "$term" "$file" > /dev/null; then
-                echo "⚠️  Found potentially problematic term '$term' in $file"
-                echo "   Consider using more neurodivergent-friendly language"
-              fi
-            done
-          fi
-        done
-        
-        echo "✅ Language check complete!"
-        
-    - name: Summary
-      run: |
-        echo "🎉 Routine validation complete!"
-        echo "📊 Summary:"
-        echo "  - JSON schema validation: ✅"
-        echo "  - Required fields check: ✅"
-        echo "  - Language review: ✅"
-        echo ""
-        echo "🧠 Thank you for contributing to our neurodivergent community!" 
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm ci
+      - name: Validate routine templates
+        run: node validate-routines.js
