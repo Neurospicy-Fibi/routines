@@ -1,0 +1,285 @@
+{
+  "title": "Masking Recovery & Authenticity Restoration",
+  "version": "1.0",
+  "description": "A restorative routine for neurodivergent individuals recovering from masking exhaustion. Helps reconnect with authentic self, process social fatigue, and rebuild energy after suppressing neurodivergent traits.",
+  "setupSteps": [
+    {
+      "type": "parameter_request",
+      "question": "What time do you typically finish social/work situations where you mask heavily?",
+      "parameterKey": "maskingEndTime",
+      "parameterType": "LOCAL_TIME"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's your favorite way to stim or self-regulate when you're alone? (rocking, fidgeting, vocal stimming, movement, etc.)",
+      "parameterKey": "authenticStimming",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's a special interest or activity that feels purely 'you'?",
+      "parameterKey": "authenticActivity",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What environment makes you feel most like yourself? (bedroom, specific room, outdoors, etc.)",
+      "parameterKey": "authenticSpace",
+      "parameterType": "STRING"
+    }
+  ],
+  "phases": [
+    {
+      "title": "Mask Removal & Decompression",
+      "steps": [
+        {
+          "type": "message",
+          "message": "🎭 Masking day complete. Time to let your authentic self breathe. You've earned this recovery time.",
+          "timeOfDay": "${maskingEndTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🏠 IMMEDIATE RELIEF: Get to your ${authenticSpace} as quickly as possible. This is your decompression zone.",
+          "timeOfDay": "${maskingEndTime}+PT2M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "👕 PHYSICAL COMFORT: Change into your most comfortable clothes, remove anything restrictive (bras, shoes, jewelry, etc.)",
+          "timeOfDay": "${maskingEndTime}+PT6M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌊 AUTHENTIC STIMMING: Engage in your ${authenticStimming} without any self-judgment. This is your nervous system healing.",
+          "timeOfDay": "${maskingEndTime}+PT12M",
+          "expectedDurationMinutes": 10,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧠 MENTAL PERMISSION: Remind yourself 'I don't have to perform anymore today. I can just BE.'",
+          "timeOfDay": "${maskingEndTime}+PT23M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Authenticity Reconnection",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Mask Removal & Decompression",
+        "times": 5
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🎭 Post-masking recovery time. Your authentic self is waiting.",
+          "timeOfDay": "${maskingEndTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🏠 Retreat to ${authenticSpace} (your safe haven)",
+          "timeOfDay": "${maskingEndTime}+PT2M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "👕 Physical comfort ritual (comfortable clothes, remove restrictions)",
+          "timeOfDay": "${maskingEndTime}+PT6M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌊 ${authenticStimming} session - your nervous system's natural regulation",
+          "timeOfDay": "${maskingEndTime}+PT12M",
+          "expectedDurationMinutes": 15,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧠 Permission to be authentic (no performance needed)",
+          "timeOfDay": "${maskingEndTime}+PT28M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "💚 AUTHENTICITY RECONNECTION: Engage with your ${authenticActivity} - something that feels purely, genuinely YOU.",
+          "timeOfDay": "${maskingEndTime}+PT31M",
+          "expectedDurationMinutes": 20,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 MASKING REFLECTION: Gently notice - what felt hardest about masking today? No judgment, just awareness.",
+          "timeOfDay": "${maskingEndTime}+PT52M",
+          "expectedDurationMinutes": 8,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Complete Restoration & Self-Advocacy",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Authenticity Reconnection",
+        "times": 7
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🎭 Full restoration protocol. Time to heal from masking and reconnect deeply with who you are.",
+          "timeOfDay": "${maskingEndTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🏠 Sacred space activation (${authenticSpace})",
+          "timeOfDay": "${maskingEndTime}+PT2M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "👕 Complete comfort transformation",
+          "timeOfDay": "${maskingEndTime}+PT6M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌊 Extended ${authenticStimming} - full nervous system reset",
+          "timeOfDay": "${maskingEndTime}+PT12M",
+          "expectedDurationMinutes": 20,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧠 Deep authenticity permission (you are enough as you are)",
+          "timeOfDay": "${maskingEndTime}+PT33M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "💚 Immersive ${authenticActivity} session - pure self-expression",
+          "timeOfDay": "${maskingEndTime}+PT37M",
+          "expectedDurationMinutes": 30,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 Masking awareness journaling (what patterns do you notice?)",
+          "timeOfDay": "${maskingEndTime}+PT68M",
+          "expectedDurationMinutes": 12,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🛡️ SELF-ADVOCACY PLANNING: Identify one small way you could mask less tomorrow. What would feel safe to try?",
+          "timeOfDay": "${maskingEndTime}+PT81M",
+          "expectedDurationMinutes": 10,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌟 AFFIRMATION PRACTICE: 'My neurodivergent traits are not flaws to hide. They are part of my authentic self.'",
+          "timeOfDay": "${maskingEndTime}+PT92M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "message",
+          "message": "💎 RESTORATION COMPLETE: You've honored your need for authenticity. Your true self is valuable and worthy of space in this world.",
+          "timeOfDay": "${maskingEndTime}+PT98M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    }
+  ],
+  "triggers": [
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Mask Removal & Decompression",
+        "times": 1
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎭 Masking Science: Suppressing your natural neurodivergent traits requires enormous energy. This recovery time isn't luxury - it's neurological necessity."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Mask Removal & Decompression",
+        "times": 5
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🌟 You're learning to honor your authentic needs! Masking recovery is an act of self-respect. Ready to deepen your authenticity practice?"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Authenticity Reconnection",
+        "times": 7
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎉 You're building a sustainable relationship with masking! You're learning when it's necessary and when you can be authentic. Ready for advanced self-advocacy?"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Complete Restoration & Self-Advocacy",
+        "times": 14
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🏆 Two weeks of consistent masking recovery! You're developing a healthy relationship with authenticity and self-advocacy. This is profound healing work."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DURATION",
+        "reference": "PHASE_ENTERED",
+        "duration": "PT48H"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "💡 Masking Reality: You're not 'too sensitive' or 'too much.' You're a neurodivergent person learning to balance authenticity with social navigation. Both are valid needs."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Complete Restoration & Self-Advocacy",
+        "times": 21
+      },
+      "effect": {
+        "type": "CREATE_TASK",
+        "taskDescription": "Develop a 'Selective Masking Strategy' - identify situations where you can safely be more authentic vs. where masking is necessary for safety/goals",
+        "parameterKey": "selectiveMasking",
+        "expiryDate": "2025-12-31T23:59:59Z"
+      }
+    }
+  ]
+} 

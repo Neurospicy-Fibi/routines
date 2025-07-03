@@ -1,0 +1,268 @@
+{
+  "title": "Habit Stacking Mastery for Neurodivergent Minds",
+  "version": "1.0",
+  "description": "Learn to build sustainable routines using the science of habit stacking. Specifically designed for ADHD and autistic brains that struggle with traditional habit formation. Based on Duke University behavioral science research.",
+  "setupSteps": [
+    {
+      "type": "parameter_request",
+      "question": "What's one small habit you already do consistently every day? (e.g., brush teeth, make coffee, check phone, feed pet)",
+      "parameterKey": "anchorHabit",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What time do you typically do this habit?",
+      "parameterKey": "anchorTime",
+      "parameterType": "LOCAL_TIME"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's one new tiny habit you want to build? (Keep it under 2 minutes - we'll grow from there!)",
+      "parameterKey": "newHabit",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What motivates you most? (accomplishment, helping others, learning, creating, solving problems)",
+      "parameterKey": "motivationType",
+      "parameterType": "STRING"
+    }
+  ],
+  "phases": [
+    {
+      "title": "Habit Stacking Foundation",
+      "steps": [
+        {
+          "type": "message",
+          "message": "🧠 Welcome to habit stacking! You're about to learn a powerful technique designed for neurodivergent brains.",
+          "timeOfDay": "${anchorTime}-PT5M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔗 Habit stack practice: After you ${anchorHabit}, immediately do your ${newHabit}",
+          "timeOfDay": "${anchorTime}",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration ritual: Say 'I did it!' or give yourself a mental high-five (dopamine reward for ADHD/autistic brains)",
+          "timeOfDay": "${anchorTime}+PT4M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "message",
+          "message": "📝 Reflection: Notice how linking ${newHabit} to ${anchorHabit} made it easier to remember!",
+          "timeOfDay": "${anchorTime}+PT6M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Neuroplasticity Training",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Habit Stacking Foundation",
+        "times": 7
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🧠 Day 8! Your brain is building neural pathways for this habit stack.",
+          "timeOfDay": "${anchorTime}-PT5M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔗 Your established stack: ${anchorHabit} → ${newHabit} (getting automatic now!)",
+          "timeOfDay": "${anchorTime}",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Dopamine celebration (your brain craves this reward!)",
+          "timeOfDay": "${anchorTime}+PT4M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📊 Stack tracking: Rate how automatic this felt today (1-10). Notice the progress!",
+          "timeOfDay": "${anchorTime}+PT6M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎯 Evening planning: Identify another small habit you could stack onto a different existing routine",
+          "timeOfDay": "19:00",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "message",
+          "message": "🧪 Science note: Your ADHD/autistic brain is using existing neural pathways to create new ones - this is why stacking works better than starting from scratch!",
+          "timeOfDay": "19:06",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Advanced Habit Architecture",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Neuroplasticity Training",
+        "times": 14
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🚀 Week 3! You're now a habit stacking practitioner. Time to build your personal routine architecture.",
+          "timeOfDay": "${anchorTime}-PT5M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔗 Master stack: ${anchorHabit} → ${newHabit} (now automatic!)",
+          "timeOfDay": "${anchorTime}",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Earned celebration (you've built real neural pathways!)",
+          "timeOfDay": "${anchorTime}+PT4M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧠 Meta-cognition: How has this habit stack changed your day or self-perception?",
+          "timeOfDay": "${anchorTime}+PT6M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🏗️ Architecture planning: Map out 3 existing habits that could become anchor points for new stacks",
+          "timeOfDay": "10:00",
+          "expectedDurationMinutes": 10,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎨 Creative stacking: Design a habit stack that supports your ${motivationType} motivation",
+          "timeOfDay": "16:00",
+          "expectedDurationMinutes": 8,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌙 Evening reflection: Practice your new evening habit stack (if you designed one)",
+          "timeOfDay": "20:00",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "message",
+          "message": "🏆 Master level unlocked: You understand how to work WITH your neurodivergent brain instead of against it!",
+          "timeOfDay": "20:06",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    }
+  ],
+  "triggers": [
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Habit Stacking Foundation",
+        "times": 1
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎉 First successful habit stack! Your brain just experienced the power of linking new behaviors to existing ones. This is how sustainable change happens for neurodivergent minds."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Habit Stacking Foundation",
+        "times": 3
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🧠 Neuroscience insight: Each time you complete your stack, you're strengthening the neural pathway between ${anchorHabit} and ${newHabit}. Your brain is literally rewiring!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Habit Stacking Foundation",
+        "times": 7
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🚀 One week of consistent stacking! Your brain has started automating this connection. Ready to learn the deeper science behind why this works so well for ADHD and autistic brains?"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Neuroplasticity Training",
+        "times": 14
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🏗️ Three weeks! You've built a solid foundation. Ready to become a habit architecture master and design multiple stacks for different areas of your life?"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Advanced Habit Architecture",
+        "times": 7
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎓 You've mastered habit stacking! You now understand how to build sustainable routines that work WITH your neurodivergent brain. This is a superpower for life management."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DURATION",
+        "reference": "PHASE_ENTERED",
+        "duration": "PT72H"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "💡 Remember: The goal isn't perfection, it's consistency. Your neurodivergent brain learns through repetition, not pressure. Be patient with yourself!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Advanced Habit Architecture",
+        "times": 21
+      },
+      "effect": {
+        "type": "CREATE_TASK",
+        "taskDescription": "Design your personal 'Neurodivergent Life Management System' using 3-5 habit stacks that support your daily functioning and ${motivationType} goals",
+        "parameterKey": "lifeMasterSystem",
+        "expiryDate": "2025-12-31T23:59:59Z"
+      }
+    }
+  ]
+} 

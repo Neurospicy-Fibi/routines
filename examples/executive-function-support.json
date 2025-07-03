@@ -1,0 +1,305 @@
+{
+  "title": "Executive Function Support System",
+  "version": "1.0",
+  "description": "A comprehensive routine to support executive functioning challenges common in ADHD and autism. Focuses on working memory, task initiation, emotional regulation, and cognitive flexibility using evidence-based strategies.",
+  "setupSteps": [
+    {
+      "type": "parameter_request",
+      "question": "What's your biggest executive function challenge? (working memory, task initiation, emotional regulation, time management, organization)",
+      "parameterKey": "mainEFChallenge",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What time of day do you feel most cognitively sharp?",
+      "parameterKey": "optimalCognitiveTime",
+      "parameterType": "LOCAL_TIME"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's your preferred way to capture thoughts/tasks? (phone notes, paper, voice memos, specific app)",
+      "parameterKey": "captureMethod",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What helps you feel emotionally regulated? (movement, breathing, music, sensory tool, etc.)",
+      "parameterKey": "emotionalRegulator",
+      "parameterType": "STRING"
+    }
+  ],
+  "phases": [
+    {
+      "title": "EF Foundation Building",
+      "steps": [
+        {
+          "type": "message",
+          "message": "🧠 EF Support session! Let's work on your ${mainEFChallenge} challenge with neurodivergent-friendly strategies.",
+          "timeOfDay": "${optimalCognitiveTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧘 Emotional regulation check: Use your ${emotionalRegulator} to get into an optimal state for cognitive work",
+          "timeOfDay": "${optimalCognitiveTime}+PT2M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 Working memory dump: Use your ${captureMethod} to write down everything currently in your head (no organizing, just capturing)",
+          "timeOfDay": "${optimalCognitiveTime}+PT6M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⭐ Priority filter: Circle or highlight just ONE thing from your dump that feels most important today",
+          "timeOfDay": "${optimalCognitiveTime}+PT12M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎯 Task initiation: Set a 15-minute timer and start working on your chosen priority (momentum over perfection!)",
+          "timeOfDay": "${optimalCognitiveTime}+PT15M",
+          "expectedDurationMinutes": 15,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "EF Skills Integration",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "EF Foundation Building",
+        "times": 7
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🧠 Week 2 of EF training! Your ${mainEFChallenge} skills are strengthening.",
+          "timeOfDay": "${optimalCognitiveTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧘 Emotional regulation ritual (becoming automatic!)",
+          "timeOfDay": "${optimalCognitiveTime}+PT2M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 Working memory external storage (brain dump)",
+          "timeOfDay": "${optimalCognitiveTime}+PT6M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⭐ Priority selection (training your filtering skills)",
+          "timeOfDay": "${optimalCognitiveTime}+PT12M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎯 Focused work sprint (building sustained attention)",
+          "timeOfDay": "${optimalCognitiveTime}+PT15M",
+          "expectedDurationMinutes": 15,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔄 Cognitive flexibility practice: Look at your brain dump and identify 2 different ways you could approach one task",
+          "timeOfDay": "${optimalCognitiveTime}+PT32M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⏰ Time awareness building: Estimate how long your next task will take, then track actual time",
+          "timeOfDay": "${optimalCognitiveTime}+PT36M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "message",
+          "message": "🌙 Evening EF review: Before bed, spend 3 minutes reflecting on what executive function strategies worked best today",
+          "timeOfDay": "21:00",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Advanced EF Mastery",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "EF Skills Integration",
+        "times": 14
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🚀 EF Mastery level! You're developing sophisticated strategies for managing ${mainEFChallenge} and more.",
+          "timeOfDay": "${optimalCognitiveTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧘 Advanced emotional regulation: Notice your stress level (1-10) and use ${emotionalRegulator} to optimize it",
+          "timeOfDay": "${optimalCognitiveTime}+PT2M",
+          "expectedDurationMinutes": 4,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 Strategic brain dump: Categorize thoughts as you capture them (tasks, worries, ideas, reminders)",
+          "timeOfDay": "${optimalCognitiveTime}+PT7M",
+          "expectedDurationMinutes": 6,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⭐ Multi-factor prioritization: Choose priority based on importance, energy level, and available time",
+          "timeOfDay": "${optimalCognitiveTime}+PT14M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎯 Enhanced focus session: 20-minute deep work with intentional attention management",
+          "timeOfDay": "${optimalCognitiveTime}+PT18M",
+          "expectedDurationMinutes": 20,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔄 Flexibility challenge: When you feel stuck, try the '3 alternative approaches' exercise",
+          "timeOfDay": "${optimalCognitiveTime}+PT40M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📊 Working memory support: Create external reminders for any commitments you made during your work session",
+          "timeOfDay": "${optimalCognitiveTime}+PT46M",
+          "expectedDurationMinutes": 4,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🕐 Midday EF check-in: Quick emotional regulation + task switching if needed",
+          "timeOfDay": "14:00",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌆 Afternoon planning: Use your ${captureMethod} to plan the next day's priorities while today is fresh",
+          "timeOfDay": "17:00",
+          "expectedDurationMinutes": 8,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌙 EF reflection & tomorrow's preparation: What worked? What would you adjust? Set yourself up for tomorrow's success.",
+          "timeOfDay": "21:00",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    }
+  ],
+  "triggers": [
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "EF Foundation Building",
+        "times": 3
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🧠 EF Science: You're training your prefrontal cortex! Each time you externalize working memory and practice emotional regulation, you're building executive function strength."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "EF Foundation Building",
+        "times": 7
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎉 One week of EF training! Your ${mainEFChallenge} skills are developing. Ready to integrate more advanced strategies like cognitive flexibility and time awareness?"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "EF Skills Integration",
+        "times": 14
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🚀 Three weeks of consistent EF practice! You're developing a sophisticated toolkit for managing neurodivergent executive function challenges. Ready for mastery level?"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Advanced EF Mastery",
+        "times": 21
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🏆 Six weeks of EF development! You've built lasting skills for managing ${mainEFChallenge} and supporting your neurodivergent brain's executive functions. This is mastery!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DURATION",
+        "reference": "PHASE_ENTERED",
+        "duration": "PT48H"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "💡 EF Tip: Executive function skills improve with practice, not pressure. Your neurodivergent brain is learning new patterns - be patient and consistent!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "EF Skills Integration",
+        "times": 7
+      },
+      "effect": {
+        "type": "CREATE_TASK",
+        "taskDescription": "Experiment with different ${captureMethod} setups to find your optimal external working memory system",
+        "parameterKey": "captureSystemOptimization",
+        "expiryDate": "2025-12-31T23:59:59Z"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Advanced EF Mastery",
+        "times": 14
+      },
+      "effect": {
+        "type": "CREATE_TASK",
+        "taskDescription": "Create a personalized 'EF Emergency Kit' with your best strategies for when ${mainEFChallenge} becomes overwhelming",
+        "parameterKey": "efEmergencyKit",
+        "expiryDate": "2025-12-31T23:59:59Z"
+      }
+    }
+  ]
+} 

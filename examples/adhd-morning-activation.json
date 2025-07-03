@@ -1,0 +1,244 @@
+{
+  "title": "ADHD Morning Activation",
+  "version": "1.0",
+  "description": "A dopamine-driven morning routine designed for ADHD brains. Uses habit stacking, body doubling cues, and sensory regulation to combat morning sluggishness and executive dysfunction.",
+  "setupSteps": [
+    {
+      "type": "parameter_request",
+      "question": "What time do you naturally tend to wake up? (Be honest - we'll work with your natural rhythm, not against it)",
+      "parameterKey": "naturalWakeTime",
+      "parameterType": "LOCAL_TIME"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's your favorite energizing music genre or specific song/artist?",
+      "parameterKey": "energizingMusic",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's your preferred morning beverage? (coffee, tea, water with lemon, etc.)",
+      "parameterKey": "morningBeverage",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "Do you prefer cooler or warmer environments when you wake up? (cool/warm)",
+      "parameterKey": "temperaturePreference",
+      "parameterType": "STRING"
+    }
+  ],
+  "phases": [
+    {
+      "title": "Dopamine Kickstart",
+      "steps": [
+        {
+          "type": "message",
+          "message": "🎵 BEFORE getting out of bed: Play your ${energizingMusic} and give yourself 2 minutes to wake up your brain!",
+          "timeOfDay": "${naturalWakeTime}",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "💧 Habit Stack: Feet hit floor → Drink pre-staged glass of water (place by bed tonight!)",
+          "timeOfDay": "${naturalWakeTime}+PT3M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "☀️ Sensory Activation: Open curtains/turn on bright lights + do 30 seconds of movement (stretches, jumping jacks, or dancing)",
+          "timeOfDay": "${naturalWakeTime}+PT5M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔥 Dopamine Reward: Start making your ${morningBeverage} while music plays - this is your 'morning victory'!",
+          "timeOfDay": "${naturalWakeTime}+PT8M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Executive Function Warm-Up",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Dopamine Kickstart",
+        "times": 7
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🎵 Music on + brain activation time!",
+          "timeOfDay": "${naturalWakeTime}",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "💧 Feet hit floor → Water sip (your brain knows this pattern now!)",
+          "timeOfDay": "${naturalWakeTime}+PT3M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "☀️ Light + movement combo (your sensory regulation ritual)",
+          "timeOfDay": "${naturalWakeTime}+PT5M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔥 ${morningBeverage} making ritual (your dopamine anchor)",
+          "timeOfDay": "${naturalWakeTime}+PT8M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧠 While drinking ${morningBeverage}: Brain dump 3 things on your mind onto paper (no judgment, just external working memory)",
+          "timeOfDay": "${naturalWakeTime}+PT15M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⭐ Pick ONE thing from your brain dump to tackle first today (ADHD brains need clear priorities)",
+          "timeOfDay": "${naturalWakeTime}+PT22M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Full ADHD-Optimized Morning",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Executive Function Warm-Up",
+        "times": 5
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🎵 Music on! Your brain is learning this pattern.",
+          "timeOfDay": "${naturalWakeTime}",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "💧 Water sip ritual (automated habit now!)",
+          "timeOfDay": "${naturalWakeTime}+PT3M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "☀️ Light + body activation",
+          "timeOfDay": "${naturalWakeTime}+PT5M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔥 ${morningBeverage} dopamine ritual",
+          "timeOfDay": "${naturalWakeTime}+PT8M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧠 Brain dump while drinking (external working memory support)",
+          "timeOfDay": "${naturalWakeTime}+PT15M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⭐ Choose your ONE priority focus",
+          "timeOfDay": "${naturalWakeTime}+PT22M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🏃 Body doubling: Set 10-minute timer and do a 'getting ready speedrun' (make it a game!)",
+          "timeOfDay": "${naturalWakeTime}+PT27M",
+          "expectedDurationMinutes": 10,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎯 Transition ritual: Take 3 deep breaths and remind yourself of your chosen priority before leaving/starting work",
+          "timeOfDay": "${naturalWakeTime}+PT40M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    }
+  ],
+  "triggers": [
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Dopamine Kickstart",
+        "times": 3
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🧠 ADHD Brain Science: You're building neural pathways! Your dopamine system is learning to associate these cues with feeling good and motivated. Keep going!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Dopamine Kickstart",
+        "times": 7
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🚀 Ready for level 2? Your brain has formed the basic habit loop. Time to add executive function supports to your morning!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Executive Function Warm-Up",
+        "times": 5
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎉 Your ADHD brain is loving this routine! You've successfully trained your executive function to engage in the morning. Ready for the full experience?"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Full ADHD-Optimized Morning",
+        "times": 14
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🏆 Two weeks of ADHD-optimized mornings! Your brain's habit loops are solid. Consider exploring our evening wind-down routine to complete your circadian rhythm support."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DURATION",
+        "reference": "PHASE_ENTERED",
+        "duration": "PT72H"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "💡 ADHD Tip: Remember, consistency matters more than perfection. Your brain needs repetition to build these neural pathways. You're doing great!"
+      }
+    }
+  ]
+} 
