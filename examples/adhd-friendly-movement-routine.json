@@ -1,0 +1,252 @@
+{
+  "title": "ADHD-Friendly Movement Routine",
+  "version": "1.0",
+  "description": "A movement and exercise routine designed specifically for ADHD brains. Uses short, varied, dopamine-driven activities that work with ADHD energy patterns, sensory needs, and motivation systems to make movement sustainable and enjoyable.",
+  "setupSteps": [
+    {
+      "type": "parameter_request",
+      "question": "What's your biggest movement challenge? (getting started, staying consistent, finding time, or all of the above)",
+      "parameterKey": "mainMovementChallenge",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What time of day do you have the most physical energy?",
+      "parameterKey": "movementEnergyTime",
+      "parameterType": "LOCAL_TIME"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What type of movement do you enjoy most? (dancing, walking, stretching, jumping, yoga, or something else)",
+      "parameterKey": "preferredMovement",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "How many minutes can you realistically dedicate to movement each day? (Start small - 5-15 minutes is perfect!)",
+      "parameterKey": "movementMinutes",
+      "parameterType": "INT"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What music or audio helps you feel energized? (specific genre, artist, podcast, or silence)",
+      "parameterKey": "energizingAudio",
+      "parameterType": "STRING"
+    }
+  ],
+  "phases": [
+    {
+      "title": "Movement Foundation",
+      "steps": [
+        {
+          "type": "message",
+          "message": "🏃 Movement time! Let's work with your ${mainMovementChallenge} using ADHD-friendly strategies.",
+          "timeOfDay": "${movementEnergyTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎵 Set up your ${energizingAudio} - this creates a positive association with movement",
+          "timeOfDay": "${movementEnergyTime}+PT2M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⚡ Quick energy boost: Do 2 minutes of your ${preferredMovement} (no pressure, just move your body)",
+          "timeOfDay": "${movementEnergyTime}+PT4M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎯 Notice how you feel: More energized? Calmer? Focused? (your brain is getting dopamine from movement!)",
+          "timeOfDay": "${movementEnergyTime}+PT7M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I moved my body today!' (dopamine reward for your ADHD brain)",
+          "timeOfDay": "${movementEnergyTime}+PT9M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Varied Movement Integration",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Movement Foundation",
+        "times": 7
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🏃 Week 2! Your brain is learning that movement feels good and provides energy.",
+          "timeOfDay": "${movementEnergyTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎵 ${energizingAudio} setup (becoming automatic!)",
+          "timeOfDay": "${movementEnergyTime}+PT2M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⚡ ${preferredMovement} session (${movementMinutes} minutes)",
+          "timeOfDay": "${movementEnergyTime}+PT4M",
+          "expectedDurationMinutes": 10,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔄 Try something new: Add 2 minutes of a different movement (variety keeps ADHD brains engaged!)",
+          "timeOfDay": "${movementEnergyTime}+PT15M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎯 Energy check: How does your body and mind feel now?",
+          "timeOfDay": "${movementEnergyTime}+PT18M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm building a movement habit that works for my ADHD brain!'",
+          "timeOfDay": "${movementEnergyTime}+PT20M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Movement Mastery",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Varied Movement Integration",
+        "times": 10
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🏃 Week 3! Time to build a comprehensive movement system that supports your ADHD brain.",
+          "timeOfDay": "${movementEnergyTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎵 ${energizingAudio} + movement prep",
+          "timeOfDay": "${movementEnergyTime}+PT2M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⚡ ${preferredMovement} main session (${movementMinutes} minutes)",
+          "timeOfDay": "${movementEnergyTime}+PT4M",
+          "expectedDurationMinutes": 10,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔄 Variety session: Try a new movement or variation (keeps your brain engaged!)",
+          "timeOfDay": "${movementEnergyTime}+PT15M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧘 Cool-down: 2 minutes of gentle stretching or slow movement",
+          "timeOfDay": "${movementEnergyTime}+PT19M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📊 Movement review: Notice how consistent movement affects your ADHD symptoms, energy, and mood",
+          "timeOfDay": "${movementEnergyTime}+PT22M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm creating a movement life that supports my ADHD brain!'",
+          "timeOfDay": "${movementEnergyTime}+PT25M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    }
+  ],
+  "triggers": [
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Movement Foundation",
+        "times": 3
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🧠 ADHD Brain Science: You're building neural pathways that associate movement with feeling good! Your dopamine system is learning that physical activity provides natural energy and focus."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Movement Foundation",
+        "times": 7
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🚀 One week of consistent movement! Your brain has formed the basic habit loop. Ready to add variety to your movement routine?"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Varied Movement Integration",
+        "times": 10
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎉 Your ADHD brain is loving this movement approach! You've successfully made physical activity sustainable. Ready to master your movement system?"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Movement Mastery",
+        "times": 14
+      },
+      "effect": {
+        "type": "CREATE_TASK",
+        "taskDescription": "Create your personalized movement toolkit: list your favorite activities, energizing music, and movement strategies that work for your ADHD brain",
+        "parameterKey": "movementToolkitCreated",
+        "expiryDate": "2025-12-31T23:59:59Z"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DURATION",
+        "reference": "PHASE_ENTERED",
+        "duration": "PT72H"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "💡 ADHD Tip: Remember, movement is medicine for your ADHD brain! Even 5 minutes of movement can boost your dopamine, focus, and mood. Consistency matters more than intensity."
+      }
+    }
+  ]
+} 

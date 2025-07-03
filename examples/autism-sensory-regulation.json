@@ -1,0 +1,285 @@
+{
+  "title": "Autism Sensory Regulation Routine",
+  "version": "1.0", 
+  "description": "A predictable routine designed for autistic individuals to regulate sensory input, manage transitions, and maintain emotional equilibrium throughout the day.",
+  "setupSteps": [
+    {
+      "type": "parameter_request",
+      "question": "What time do you prefer to start your day? (Consistency is key for autistic brains)",
+      "parameterKey": "routineStartTime",
+      "parameterType": "LOCAL_TIME"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's your preferred sensory regulation tool? (weighted blanket, fidget toy, specific texture, music, etc.)",
+      "parameterKey": "sensoryTool",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's a special interest or comforting topic you could read about for 5 minutes?",
+      "parameterKey": "specialInterest",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What helps you feel most regulated? (deep pressure, gentle movement, quiet time, specific scents, etc.)",
+      "parameterKey": "regulationStrategy",
+      "parameterType": "STRING"
+    }
+  ],
+  "phases": [
+    {
+      "title": "Morning Sensory Check-In", 
+      "steps": [
+        {
+          "type": "message",
+          "message": "🌅 Good morning! Time for your predictable routine. First, let's check in with your sensory system.",
+          "timeOfDay": "${routineStartTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔍 Sensory body scan: Notice how your body feels right now. Any tension, sensitivity, or needs?",
+          "timeOfDay": "${routineStartTime}+PT2M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧸 Use your ${sensoryTool} for 5 minutes to help regulate your nervous system",
+          "timeOfDay": "${routineStartTime}+PT6M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📖 Special interest time: Read or think about ${specialInterest} for comfort and grounding",
+          "timeOfDay": "${routineStartTime}+PT12M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Midday Regulation Reset",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Morning Sensory Check-In",
+        "times": 5
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🌅 Morning sensory routine (you know this pattern!)",
+          "timeOfDay": "${routineStartTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔍 Body scan check-in",
+          "timeOfDay": "${routineStartTime}+PT2M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧸 ${sensoryTool} regulation time",
+          "timeOfDay": "${routineStartTime}+PT6M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📖 ${specialInterest} grounding time",
+          "timeOfDay": "${routineStartTime}+PT12M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "message",
+          "message": "🕐 Midday reset time: Let's prevent sensory overload before it happens",
+          "timeOfDay": "12:00",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌿 Midday sensory break: Use your ${regulationStrategy} to reset your nervous system",
+          "timeOfDay": "12:02",
+          "expectedDurationMinutes": 10,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "💧 Hydration and nourishment: Drink water and have a preferred snack if needed",
+          "timeOfDay": "12:13",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Full Daily Sensory Support",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Midday Regulation Reset",
+        "times": 7
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🌅 Your reliable morning routine begins",
+          "timeOfDay": "${routineStartTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔍 Sensory body scan (your morning check-in)",
+          "timeOfDay": "${routineStartTime}+PT2M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧸 ${sensoryTool} regulation (your trusted tool)",
+          "timeOfDay": "${routineStartTime}+PT6M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📖 ${specialInterest} grounding time (your comfort zone)",
+          "timeOfDay": "${routineStartTime}+PT12M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "message",
+          "message": "🕐 Midday reset checkpoint",
+          "timeOfDay": "12:00",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌿 Midday ${regulationStrategy} break",
+          "timeOfDay": "12:02",
+          "expectedDurationMinutes": 10,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "💧 Hydration and nourishment break",
+          "timeOfDay": "12:13",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "message",
+          "message": "🌅 Evening wind-down preparation time",
+          "timeOfDay": "17:00",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔧 Transition preparation: Set out items you'll need for tomorrow (reducing tomorrow's cognitive load)",
+          "timeOfDay": "17:02",
+          "expectedDurationMinutes": 10,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌙 Evening ${sensoryTool} session to process the day's sensory input",
+          "timeOfDay": "17:15",
+          "expectedDurationMinutes": 15,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 Optional: Brief reflection on your sensory experiences today (what worked, what to adjust)",
+          "timeOfDay": "17:32",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    }
+  ],
+  "triggers": [
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Morning Sensory Check-In",
+        "times": 3
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🧠 Autism & Routine: Your brain thrives on predictability! These consistent sensory check-ins are helping regulate your nervous system and preventing overwhelm."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Morning Sensory Check-In",
+        "times": 5
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🌟 Excellent! Your morning regulation is becoming automatic. Ready to add a midday sensory reset to prevent afternoon overwhelm?"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Midday Regulation Reset",
+        "times": 7
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎉 Your sensory regulation routine is working! You're preventing meltdowns and supporting your nervous system. Ready for full-day sensory support?"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Full Daily Sensory Support",
+        "times": 21
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🏆 Three weeks of consistent sensory regulation! You've created a sustainable system for supporting your autistic nervous system. This is fantastic self-advocacy!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DURATION",
+        "reference": "PHASE_ENTERED",
+        "duration": "PT48H"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "💡 Sensory Tip: Remember that sensory needs can change day to day. It's okay to adjust your tools and strategies based on how you're feeling."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Full Daily Sensory Support",
+        "times": 10
+      },
+      "effect": {
+        "type": "CREATE_TASK",
+        "taskDescription": "Consider creating a sensory emergency kit for challenging days (include your ${sensoryTool}, comfort items, and backup regulation strategies)",
+        "parameterKey": "sensoryKitReady",
+        "expiryDate": "2025-12-31T23:59:59Z"
+      }
+    }
+  ]
+} 

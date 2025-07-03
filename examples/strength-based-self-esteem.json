@@ -1,0 +1,251 @@
+{
+  "title": "Strength-Based Self-Esteem Building",
+  "version": "1.0",
+  "description": "A reminiscence-based routine designed for ADHD and autistic individuals. Uses positive memory recall, strength identification, and practical application to build authentic self-esteem that honors neurodivergent strengths and experiences.",
+  "setupSteps": [
+    {
+      "type": "parameter_request",
+      "question": "What's your biggest self-esteem challenge? (recognizing strengths, feeling proud of achievements, or believing in your abilities)",
+      "parameterKey": "mainSelfEsteemChallenge",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What time of day do you feel most reflective and positive?",
+      "parameterKey": "reflectionTime",
+      "parameterType": "LOCAL_TIME"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's your preferred way to record memories? (writing, voice notes, drawing, or photos)",
+      "parameterKey": "memoryCaptureMethod",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's one thing you're naturally good at? (This will be your 'strength anchor' for building confidence)",
+      "parameterKey": "strengthAnchor",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What helps you feel proud of yourself? (recognition, accomplishment, helping others, or something else)",
+      "parameterKey": "prideTrigger",
+      "parameterType": "STRING"
+    }
+  ],
+  "phases": [
+    {
+      "title": "Positive Memory Foundation",
+      "steps": [
+        {
+          "type": "message",
+          "message": "🌟 Strength-building time! Let's work with your ${mainSelfEsteemChallenge} using reminiscence strategies designed for neurodivergent brains.",
+          "timeOfDay": "${reflectionTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 Memory recall: Use your ${memoryCaptureMethod} to describe a moment when you felt proud or joyful (no pressure to be perfect)",
+          "timeOfDay": "${reflectionTime}+PT2M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "💪 Strength identification: What personal strength does this moment reveal about you? (creativity, persistence, kindness, etc.)",
+          "timeOfDay": "${reflectionTime}+PT8M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌙 Evening reflection: How do you feel when you think about that memory? (your brain is building positive associations)",
+          "timeOfDay": "20:00",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm recognizing my authentic strengths!' (your neurodivergent brain is building self-awareness)",
+          "timeOfDay": "20:03",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Strength Profile Building",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Positive Memory Foundation",
+        "times": 7
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🌟 Strength-building time! Your brain is learning to recognize and celebrate your strengths. Time to build your strength profile.",
+          "timeOfDay": "${reflectionTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📋 Strength gathering: Review your recorded strengths from the past week and list them all (your brain is building a strength database)",
+          "timeOfDay": "${reflectionTime}+PT2M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⭐ Top three selection: Choose three strengths that matter most to you and why they're important (include your ${strengthAnchor})",
+          "timeOfDay": "${reflectionTime}+PT8M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎯 Application planning: Name one situation for each strength where you could actively use it in daily life",
+          "timeOfDay": "${reflectionTime}+PT14M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm building a strength-based identity!' (your neurodivergent brain is creating positive self-concept)",
+          "timeOfDay": "${reflectionTime}+PT18M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Strength Application Mastery",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Strength Profile Building",
+        "times": 3
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🌟 Strength-building time! Time to actively apply your strengths in daily life.",
+          "timeOfDay": "${reflectionTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌅 Morning strength choice: Choose one strength you want to actively use today (this sets your intention)",
+          "timeOfDay": "${reflectionTime}",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎯 Throughout the day: Notice opportunities to use your chosen strength (no pressure, just awareness)",
+          "timeOfDay": "${reflectionTime}+PT3M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌙 Evening strength review: When did you use your strength today? What was the experience like? (use your ${prideTrigger} to celebrate)",
+          "timeOfDay": "20:00",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm living from my authentic strengths!' (your neurodivergent brain is building confidence)",
+          "timeOfDay": "20:06",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    }
+  ],
+  "triggers": [
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Positive Memory Foundation",
+        "times": 3
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🧠 Neurodivergent Brain Science: You're building positive memory networks! Your brain is learning to access and celebrate your authentic strengths and experiences."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Positive Memory Foundation",
+        "times": 7
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🚀 One week of strength recognition! Your brain has formed the basic memory habit. Ready to build your strength profile?"
+      }
+    },
+    {
+      "condition": {
+        "type": "PHASE_ENTERED",
+        "phaseTitle": "Strength Profile Building"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🌟 Week 2! Time to build your strength profile. Your neurodivergent brain is ready to identify and celebrate your authentic strengths!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Strength Profile Building",
+        "times": 3
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎉 Your neurodivergent brain is loving this approach! You've successfully identified your authentic strengths. Ready to apply them in daily life?"
+      }
+    },
+    {
+      "condition": {
+        "type": "PHASE_ENTERED",
+        "phaseTitle": "Strength Application Mastery"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🌟 Week 3! Time to apply your strengths in daily life. Your neurodivergent brain is ready to live from your authentic abilities!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Strength Application Mastery",
+        "times": 5
+      },
+      "effect": {
+        "type": "CREATE_TASK",
+        "taskDescription": "Create your personalized strength toolkit: list your top strengths, favorite memories, and daily application strategies that work for your neurodivergent brain",
+        "parameterKey": "strengthToolkitCreated",
+        "expiryDate": "2025-12-31T23:59:59Z"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DURATION",
+        "reference": "PHASE_ENTERED",
+        "duration": "PT72H"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "💡 Neurodivergent Tip: Remember, your strengths are unique to you! Don't compare yourself to neurotypical standards. Your neurodivergent brain has amazing abilities that deserve celebration."
+      }
+    }
+  ]
+} 

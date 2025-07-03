@@ -2,94 +2,277 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Niva Routine Template",
   "type": "object",
-  "required": ["id", "title", "phases"],
+  "required": ["title", "version", "description", "phases"],
   "properties": {
-    "id": { "type": "string" },
-    "title": { "type": "string" },
-    "description": { "type": "string" },
-    "setup": {
-      "type": "object",
-      "properties": {
-        "steps": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/step" }
-        }
-      }
+    "title": { 
+      "type": "string",
+      "description": "Human-readable name of the routine"
+    },
+    "version": { 
+      "type": "string",
+      "description": "Version identifier (e.g., '1.0', '2.1')"
+    },
+    "description": { 
+      "type": "string",
+      "description": "Brief description of what this routine helps with"
+    },
+    "setupSteps": {
+      "type": "array",
+      "description": "Steps required during routine setup (typically parameter requests)",
+      "items": { "$ref": "#/definitions/step" },
+      "default": []
     },
     "phases": {
       "type": "array",
-      "items": { "$ref": "#/definitions/phase" }
+      "description": "Sequential phases of the routine (at least one required)",
+      "items": { "$ref": "#/definitions/phase" },
+      "minItems": 1
     },
     "triggers": {
       "type": "array",
-      "items": { "$ref": "#/definitions/trigger" }
+      "description": "Event-driven triggers that execute effects during routine lifecycle",
+      "items": { "$ref": "#/definitions/trigger" },
+      "default": []
     }
   },
   "definitions": {
     "step": {
       "type": "object",
-      "required": ["id", "type", "description"],
+      "oneOf": [
+        { "$ref": "#/definitions/parameterRequestStep" },
+        { "$ref": "#/definitions/actionStep" },
+        { "$ref": "#/definitions/messageStep" }
+      ]
+    },
+    "parameterRequestStep": {
+      "type": "object",
+      "required": ["type", "question", "parameterKey", "parameterType"],
       "properties": {
-        "id": { "type": "string" },
-        "type": {
+        "type": { "const": "parameter_request" },
+        "question": { 
           "type": "string",
-          "enum": ["action", "parameter_request", "message"]
+          "description": "Question to ask the user"
         },
-        "description": { "type": "string" },
-        "parameterKey": { "type": "string" },
-        "timeOfDay": { "type": "string" },
-        "expectedDurationMinutes": { "type": "integer" },
-        "expectConfirmation": { "type": "boolean" }
+        "parameterKey": { 
+          "type": "string",
+          "description": "Key to store the parameter value under"
+        },
+        "parameterType": {
+          "type": "string",
+          "enum": ["STRING", "LOCAL_TIME", "BOOLEAN", "INT", "FLOAT", "DATE"],
+          "description": "Expected data type of the parameter"
+        },
+        "timeOfDay": { "$ref": "#/definitions/timeOfDay" }
       }
+    },
+    "actionStep": {
+      "type": "object",
+      "required": ["type", "message"],
+      "properties": {
+        "type": { "const": "action" },
+        "message": { 
+          "type": "string",
+          "description": "Action instruction for the user"
+        },
+        "expectConfirmation": { 
+          "type": "boolean",
+          "description": "Whether to wait for user confirmation",
+          "default": false
+        },
+        "expectedDurationMinutes": { 
+          "type": "integer",
+          "minimum": 1,
+          "description": "Expected time to complete this action"
+        },
+        "timeOfDay": { "$ref": "#/definitions/timeOfDay" }
+      }
+    },
+    "messageStep": {
+      "type": "object",
+      "required": ["type", "message"],
+      "properties": {
+        "type": { "const": "message" },
+        "message": { 
+          "type": "string",
+          "description": "Message to send to the user"
+        },
+        "timeOfDay": { "$ref": "#/definitions/timeOfDay" }
+      }
+    },
+    "timeOfDay": {
+      "type": "string",
+      "description": "Time reference using parameter substitution (e.g., '${wakeUpTime}', '${wakeUpTime}+PT15M')"
     },
     "phase": {
       "type": "object",
-      "required": ["id", "title", "condition", "steps"],
+      "required": ["title", "steps"],
       "properties": {
-        "id": { "type": "string" },
-        "title": { "type": "string" },
-        "condition": { "$ref": "#/definitions/condition" },
+        "title": { 
+          "type": "string",
+          "description": "Human-readable phase name"
+        },
+        "condition": { 
+          "$ref": "#/definitions/triggerCondition",
+          "description": "When this phase should become active (null for immediate activation)"
+        },
         "steps": {
           "type": "array",
-          "items": { "$ref": "#/definitions/step" }
+          "items": { "$ref": "#/definitions/step" },
+          "minItems": 1,
+          "description": "Steps to execute in this phase"
+        },
+        "schedule": {
+          "type": "string",
+          "enum": ["DAILY", "WEEKLY", "WEEKDAYS", "WEEKENDS", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"],
+          "default": "DAILY",
+          "description": "How often this phase should repeat"
         }
       }
     },
-    "condition": {
+    "triggerCondition": {
       "type": "object",
       "required": ["type"],
+      "oneOf": [
+        { "$ref": "#/definitions/afterDaysCondition" },
+        { "$ref": "#/definitions/afterPhaseCompletionsCondition" },
+        { "$ref": "#/definitions/afterDurationCondition" },
+        { "$ref": "#/definitions/afterEventCondition" },
+        { "$ref": "#/definitions/phaseEnteredCondition" },
+        { "$ref": "#/definitions/afterParameterSetCondition" }
+      ]
+    },
+    "afterDaysCondition": {
+      "type": "object",
+      "required": ["type", "value"],
       "properties": {
-        "type": {
+        "type": { "const": "AFTER_DAYS" },
+        "value": { 
+          "type": "integer", 
+          "minimum": 1,
+          "description": "Number of days after routine start"
+        }
+      }
+    },
+    "afterPhaseCompletionsCondition": {
+      "type": "object",
+      "required": ["type", "phaseTitle", "times"],
+      "properties": {
+        "type": { "const": "AFTER_PHASE_COMPLETIONS" },
+        "phaseTitle": { 
           "type": "string",
-          "enum": ["AFTER_DAYS", "AFTER_PHASE_COMPLETIONS", "AFTER_DURATION", "AFTER_USER_CONFIRMATION"]
+          "description": "Title of the phase to track completions for"
         },
-        "value": { "type": "integer" },
-        "phaseId": { "type": "string" },
-        "reference": { "type": "string" },
-        "duration": { "type": "string" },
-        "confirmationKey": { "type": "string" }
+        "times": { 
+          "type": "integer", 
+          "minimum": 1,
+          "description": "Number of completions required"
+        }
+      }
+    },
+    "afterDurationCondition": {
+      "type": "object",
+      "required": ["type", "duration"],
+      "properties": {
+        "type": { "const": "AFTER_DURATION" },
+        "reference": { 
+          "type": "string",
+          "description": "Reference point (optional)"
+        },
+        "duration": { 
+          "type": "string",
+          "pattern": "^PT\\d+[HMS]$",
+          "description": "ISO 8601 duration (e.g., 'PT15M', 'PT2H')"
+        }
+      }
+    },
+    "phaseEnteredCondition": {
+      "type": "object",
+      "required": ["type", "phaseTitle"],
+      "properties": {
+        "type": { "const": "PHASE_ENTERED" },
+        "phaseTitle": { "type": "string" },
+        "duration": { 
+          "type": "string",
+          "pattern": "^PT\\d+[HMS]$",
+          "description": "Duration after entering the phase"
+        }
+      }
+    },
+    "afterEventCondition": {
+      "type": "object",
+      "required": ["type", "eventType"],
+      "properties": {
+        "type": { "const": "AFTER_EVENT" },
+        "eventType": {
+          "type": "string",
+          "enum": ["ROUTINE_STARTED", "PHASE_ENTERED", "PHASE_LEFT"]
+        },
+        "phaseTitle": { 
+          "type": "string",
+          "description": "Phase title for phase-specific events"
+        },
+        "duration": { 
+          "type": "string",
+          "pattern": "^PT\\d+[HMS]$",
+          "description": "Duration after the event"
+        }
+      }
+    },
+    "afterParameterSetCondition": {
+      "type": "object",
+      "required": ["type", "parameterKey"],
+      "properties": {
+        "type": { "const": "AFTER_PARAMETER_SET" },
+        "parameterKey": { 
+          "type": "string",
+          "description": "Parameter key that triggers this condition"
+        }
       }
     },
     "trigger": {
       "type": "object",
-      "required": ["id", "condition", "effect"],
+      "required": ["condition", "effect"],
       "properties": {
-        "id": { "type": "string" },
-        "condition": { "$ref": "#/definitions/condition" },
-        "effect": { "$ref": "#/definitions/effect" }
+        "condition": { "$ref": "#/definitions/triggerCondition" },
+        "effect": { "$ref": "#/definitions/triggerEffect" }
       }
     },
-    "effect": {
+    "triggerEffect": {
       "type": "object",
-      "required": ["type"],
+      "oneOf": [
+        { "$ref": "#/definitions/sendMessageEffect" },
+        { "$ref": "#/definitions/createTaskEffect" }
+      ]
+    },
+    "sendMessageEffect": {
+      "type": "object",
+      "required": ["type", "message"],
       "properties": {
-        "type": {
+        "type": { "const": "SEND_MESSAGE" },
+        "message": { 
           "type": "string",
-          "enum": ["SendMessage", "CreateTask"]
+          "description": "Message to send to the user"
+        }
+      }
+    },
+    "createTaskEffect": {
+      "type": "object",
+      "required": ["type", "taskDescription", "parameterKey", "expiryDate"],
+      "properties": {
+        "type": { "const": "CREATE_TASK" },
+        "taskDescription": { 
+          "type": "string",
+          "description": "Description of the task to create"
         },
-        "message": { "type": "string" },
-        "taskDescription": { "type": "string" },
-        "confirmationKey": { "type": "string" }
+        "parameterKey": { 
+          "type": "string",
+          "description": "Parameter key to set when task is completed"
+        },
+        "expiryDate": { 
+          "type": "string",
+          "format": "date-time",
+          "description": "When this task expires (ISO 8601 format)"
+        }
       }
     }
   }
