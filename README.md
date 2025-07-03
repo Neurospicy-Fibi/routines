@@ -1,156 +1,369 @@
-# Routine Templates for Niva
+# 🧠 Niva Routine Templates
 
-This repository contains community-contributed routine templates for the [Niva](https://github.com/neurospicy/fibi) AI assistant, designed specifically for ADHD and autism support.
+> **Community-created routine templates for neurodivergent brains**
 
-## Overview
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
+[![Content License: CC BY-SA 4.0](https://img.shields.io/badge/Content%20License-CC%20BY--SA%204.0-green.svg)](content-license.md)
 
-Routines help neurodivergent users establish and maintain structured habits through:
-- **Gradual progression** from simple to complex habits
-- **Automatic phase transitions** based on completion milestones  
-- **Intelligent scheduling** with parameter substitution
-- **Contextual triggers** that provide encouragement and guidance
+This is where our community creates, shares, and improves routine templates for [Niva](https://neurospicy.icu) - the AI assistant designed specifically for neurodivergent brains.
 
-## Template Structure
+---
 
-Each routine template is a JSON file following the [routine schema](routine-schema.json). Key components:
+## 🌟 **Welcome to the Niva Routine Community!**
 
-### Basic Information
-- `title`: Human-readable routine name
-- `version`: Template version (e.g., "1.0")
-- `description`: Brief explanation of the routine's purpose
+Are you neurodivergent and looking for structured, compassionate routines that actually work for your brain? You've found the right place! 
 
-### Setup Steps (Optional)
-Questions asked during routine setup to personalize the experience:
-```json
-{
-  "type": "parameter_request",
-  "question": "What time would you like to wake up?",
-  "parameterKey": "wakeUpTime", 
-  "parameterType": "LOCAL_TIME"
-}
-```
+This repository contains **community-contributed routine templates** that help with:
+- 🌅 **Morning routines** that start gentle and build gradually
+- 🧘‍♀️ **Self-care practices** designed for neurodivergent needs
+- 🏠 **Home care systems** that work with executive function challenges
+- 🍽️ **Meal planning** that's ADHD-friendly
+- 💪 **Movement routines** that respect sensory needs
+- 🌙 **Evening wind-down** for better sleep
+- 💝 **Self-esteem building** using evidence-based techniques
 
-### Phases
-Sequential stages that activate based on conditions:
-- **Immediate activation**: First phase starts right away
-- **Completion-based**: Activate after completing previous phases
-- **Time-based**: Activate after specific durations
-- **Parameter-based**: Activate when user completes tasks
+**Every routine here is:**
+- ✅ **Tested by the community** - real neurodivergent people use these
+- ✅ **Scientifically grounded** - based on research for ADHD, autism, and neurodivergence
+- ✅ **Gradually progressive** - start simple, build complexity naturally
+- ✅ **Flexible and adaptable** - customize to your unique needs
+- ✅ **Compassionate** - no shame, no pressure, just gentle support
 
-### Steps
-Individual actions within phases:
-- **Action steps**: Require user confirmation (`expectConfirmation: true`)
-- **Message steps**: Send information to user
-- **Parameter requests**: Collect additional information
+---
 
-### Time References  
-Support both fixed times and parameter substitution:
-- Fixed: `"07:00"` 
-- Parameter-based: `"${wakeUpTime}"` or `"${wakeUpTime}+PT15M"`
+## 🚀 **Quick Start**
 
-### Triggers
-Event-driven effects that provide feedback:
-- **Send messages**: Encouragement and tips
-- **Create tasks**: Connect to Niva's task system
+### **For Niva Users**
+1. Browse our [routine examples](examples/) to find what interests you
+2. Copy the JSON file you want to try
+3. Import it into your Niva assistant
+4. Customize the parameters to fit your life
+5. Start with the first phase and let Niva guide you!
 
-## Example Templates
+### **For Contributors**
+1. Read our [Beginner's Guide](BEGINNERS_GUIDE.md) to understand routine design
+2. Check out the [Routine Design Guide](ROUTINE_DESIGN_GUIDE.md) for advanced techniques
+3. Review the [scientific background](SCIENTIFIC_BACKGROUND.md) behind our approach
+4. Create your routine following our [schema](routine-schema.json)
+5. Submit a pull request to share with the community!
 
-### 🌅 [Morning Planning Routine](../fibi/src/test/resources/morning-planning-routine.example.json)
-Gradually builds from simple hydration and mindfulness to complete morning routine with planning and healthy breakfast.
+---
 
-**Progression**: 
-1. **Building Morning Calm** → Simple water + chosen activity
-2. **Adding Daily Planning** → Adds task planning (after 5 completions)  
-3. **Complete Morning Routine** → Adds breakfast (triggered by task completion)
+## 📚 **Featured Routines**
 
-### 💧 [Daily Hydration Reminder](../fibi/src/test/resources/simple-hydration-routine.json)
-Basic habit building with 4 daily water reminders and milestone celebrations.
+### 🌅 **Morning & Daily Routines**
+- **[ADHD-Friendly Morning Activation](examples/adhd-morning-activation.json)** - Gentle wake-up routine that builds gradually
+- **[Neurodivergent Home Care System](examples/neurodivergent-home-care-system.json)** - Complete home management system
+- **[ADHD-Friendly Meal Planning](examples/adhd-friendly-meal-planning.json)** - Weekly meal planning that works with executive function
 
-### 🌙 [Evening Wind-Down](../fibi/src/test/resources/evening-wind-down-routine.json) 
-Peaceful transition to sleep with device management, breathing, and relaxation.
+### 🧘‍♀️ **Self-Care & Wellness**
+- **[Autism Sensory Regulation](examples/autism-sensory-regulation.json)** - Sensory-friendly self-regulation practices
+- **[Neurodivergent Sleep Optimization](examples/neurodivergent-sleep-optimization.json)** - Better sleep for neurodivergent brains
+- **[Screen Time Regulation](examples/screen-time-regulation-neurodivergent.json)** - Healthy digital habits
 
-### 🧘‍♀️ [Daily Meditation](../fibi/src/test/resources/simple-meditation-routine.json)
-Minimalist meditation routine perfect for beginners.
+### 💪 **Movement & Health**
+- **[ADHD-Friendly Movement Routine](examples/adhd-friendly-movement-routine.json)** - Exercise that works with ADHD energy patterns
+- **[Executive Function Support](examples/executive-function-support.json)** - Building executive function skills
 
-## Phase Completion & Transitions
+### 💝 **Mental Health & Self-Esteem**
+- **[Self-Compassion for Neurodivergent Minds](examples/self-compassion-neurodivergent.json)** - Evidence-based self-compassion practices
+- **[Strength-Based Self-Esteem](examples/strength-based-self-esteem.json)** - Building confidence through strengths
+- **[Cognitive Restructuring for Neurodivergence](examples/cognitive-restructuring-neurodivergent.json)** - CBT techniques adapted for neurodivergent brains
 
-The system automatically tracks step completions and evaluates phase transition conditions:
+### 🎯 **Specialized Support**
+- **[Habit Stacking Mastery](examples/habit-stacking-mastery.json)** - Building complex routines step by step
+- **[Masking Recovery Routine](examples/masking-recovery-routine.json)** - Healing from social masking
+- **[Neurodivergent Social Maintenance](examples/neurodivergent-social-maintenance.json)** - Maintaining social connections
 
-- **Step Recognition**: When users confirm action steps
-- **Phase Completion**: When all steps in a phase iteration are completed
-- **Automatic Transitions**: New phases activate when conditions are met
-- **Resource Cleanup**: Old phase schedulers are properly removed
+---
 
-### Transition Types
+## 🛠 **How Routines Work**
 
-1. **`AFTER_PHASE_COMPLETIONS`**: Activate after completing a phase N times
-   ```json
-   {
-     "type": "AFTER_PHASE_COMPLETIONS",
-     "phaseTitle": "Building Morning Calm",
-     "times": 5
-   }
-   ```
+### **Progressive Phases**
+Each routine starts simple and builds complexity naturally:
 
-2. **`AFTER_DAYS`**: Activate after N days from routine start
-   ```json
-   {
-     "type": "AFTER_DAYS", 
-     "value": 7
-   }
-   ```
+1. **Phase 1**: Simple, achievable steps (e.g., "Drink water")
+2. **Phase 2**: Adds one new element (e.g., "Drink water + 2 minutes of stretching")
+3. **Phase 3**: More complex integration (e.g., "Complete morning routine")
 
-3. **`AFTER_PARAMETER_SET`**: Activate when user completes specific parameter task
-   ```json
-   {
-     "type": "AFTER_PARAMETER_SET",
-     "parameterKey": "breakfastReady"
-   }
-   ```
+### **Smart Triggers**
+Routines automatically adapt based on your progress:
+- **Completion-based**: "After doing this 5 times, add the next step"
+- **Time-based**: "After 7 days, introduce the next phase"
+- **Parameter-based**: "When you're ready, add this new element"
 
-## Technical Implementation
+### **Personalized Parameters**
+Every routine can be customized:
+- **Wake-up time**: Set your preferred morning start
+- **Activity preferences**: Choose what works for your sensory needs
+- **Duration**: Adjust time commitments to your energy levels
+- **Reminders**: Set when and how often you want gentle nudges
 
-### Automatic Loading
-Templates are automatically loaded at application startup from any `*routine*.json` files in the classpath.
+---
 
-### Parameter Types
-- `STRING`: Any text
-- `LOCAL_TIME`: 24-hour time format (e.g., "07:30")
-- `BOOLEAN`: true/false, yes/no, etc.
-- `INT`: Whole numbers
-- `FLOAT`: Decimal numbers  
-- `DATE`: yyyy-MM-dd format
+## 🤝 **Join Our Community**
 
-### Scheduling
-- **Phase iterations**: Recurring based on `schedule` (DAILY, WEEKLY, etc.)
-- **Step scheduling**: Based on `timeOfDay` with parameter substitution
-- **Trigger conditions**: Time-based triggers for messages and tasks
+### **Share Your Experience**
+- 💬 **GitHub Discussions**: [Share your routine success stories](https://github.com/Neurospicy-Niva/routines/discussions)
+- 📧 **Email Support**: [Get help](mailto:help@neurospicy.icu)
+- 🐛 **Report Issues**: [Found a problem? Let us know](https://github.com/Neurospicy-Niva/routines/issues)
 
-## Contributing Templates
+### **Contribute Routines**
+We welcome routines from everyone! Whether you're:
+- 🧠 **A neurodivergent person** sharing what works for you
+- 🎓 **A researcher** translating findings into practical routines
+- 🏥 **A therapist** adapting clinical techniques for daily use
+- 💡 **A creative mind** with innovative routine ideas
 
-1. Create a new JSON file following the [schema](routine-schema.json)
-2. Test your template with realistic user scenarios
-3. Ensure progression feels natural for neurodivergent users
-4. Submit a pull request with:
-   - Template file
-   - Brief description of the routine's purpose
-   - Any special considerations for ADHD/autism users
+### **How to Contribute**
+1. **Fork this repository**
+2. **Create your routine** following our [schema](routine-schema.json)
+3. **Test it thoroughly** with realistic scenarios
+4. **Document your approach** in the routine description
+5. **Submit a pull request** with your contribution
 
-### Design Guidelines
+### **Quality Guidelines**
+- ✅ **Start simple** - First phases should be easily achievable
+- ✅ **Build gradually** - Each phase should feel like a natural next step
+- ✅ **Be compassionate** - Use encouraging, non-judgmental language
+- ✅ **Respect diversity** - Consider different neurodivergent experiences
+- ✅ **Evidence-based** - Ground your routine in research when possible
 
-- **Start simple**: First phases should have minimal complexity
-- **Gradual progression**: Each phase should feel like a natural next step
-- **Clear timeframes**: Avoid overwhelming users with too many simultaneous prompts
-- **Positive reinforcement**: Use encouraging language and celebrate milestones
-- **Flexible timing**: Support parameter-based scheduling for individual preferences
+---
 
-## License
+## 📖 **Resources & Documentation**
 
-All routine templates in this repository are released under the [Creative Commons Attribution-ShareAlike 4.0](content-license.md) license, making them freely available for the community while ensuring contributions remain open.
+### **For Routine Creators**
+- [Routine Design Guide](ROUTINE_DESIGN_GUIDE.md) - Detailed guide for creating routines
+- [Scientific Background](SCIENTIFIC_BACKGROUND.md) - Research behind our approach
+- [Examples](examples/) - Browse existing routines for inspiration
+- [Schema Reference](routine-schema.json) - Technical specification
 
-## Support
+### **For Niva Users**
+- [Beginner's Guide](BEGINNERS_GUIDE.md) - How to use routines effectively
+- [Variables Guide](VARIABLES.md) - Understanding routine customization
+- [Troubleshooting](docs/troubleshooting.md) - Common issues and solutions
 
-For questions about creating or using routine templates:
-- 📝 [Open an issue](https://github.com/neurospicy/fibi/issues)
-- 💬 Join the [Niva community discussions](https://github.com/neurospicy/fibi/discussions)
-- 📧 Contact the maintainers
+### **Community Support**
+- **GitHub Issues**: [Report bugs or request features](https://github.com/Neurospicy-Niva/routines/issues)
+- **GitHub Discussions**: [Community conversations](https://github.com/Neurospicy-Niva/routines/discussions)
+- **Email Support**: [Get help](mailto:help@neurospicy.icu)
+
+---
+
+## 🎯 **Our Mission**
+
+We believe that **every neurodivergent person deserves routines that work for their unique brain**. This repository is more than just code - it's a community of people helping each other build better lives through structured, compassionate support.
+
+**Every routine here represents:**
+- 🧠 **Real experiences** from neurodivergent community members
+- 🔬 **Scientific research** adapted for practical daily use
+- 💝 **Compassionate design** that respects neurodivergent needs
+- 🌱 **Continuous improvement** through community feedback
+
+---
+
+## 📜 **Licensing**
+
+- **Routine Templates**: [Creative Commons Attribution-ShareAlike 4.0](content-license.md) - Share and adapt freely
+- **Code & Tools**: [MIT License](LICENSE.md) - Use in any project
+
+---
+
+## 🙏 **Acknowledgments**
+
+Special thanks to:
+- **The neurodivergent community** for sharing your experiences and needs
+- **Researchers and clinicians** whose work informs our routine design
+- **Contributors** who make this repository better every day
+- **The Niva team** for building the platform that makes these routines possible
+
+---
+
+*This project is part of the [Niva AI Assistant](https://github.com/Neurospicy-Niva/fibi) - designed by neurodivergent people, for neurodivergent people.*
+
+---
+
+# 🧠 Niva Routine-Templates
+
+> **Community-erstellte Routine-Templates für neurodivergente Gehirne**
+
+[![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-yellow.svg)](LICENSE.md)
+[![Inhaltslizenz: CC BY-SA 4.0](https://img.shields.io/badge/Inhaltslizenz-CC%20BY--SA%204.0-green.svg)](content-license.md)
+
+Hier erstellt, teilt und verbessert unsere Community Routine-Templates für [Niva](https://neurospicy.icu) - den KI-Assistenten, der speziell für neurodivergente Gehirne entwickelt wurde.
+
+---
+
+## 🌟 **Willkommen in der Niva Routine-Community!**
+
+Bist du neurodivergent und suchst nach strukturierten, mitfühlenden Routinen, die wirklich für dein Gehirn funktionieren? Du bist am richtigen Ort!
+
+Dieses Repository enthält **Community-beigetragene Routine-Templates**, die helfen bei:
+- 🌅 **Morgenroutinen**, die sanft beginnen und schrittweise aufbauen
+- 🧘‍♀️ **Selbstfürsorge-Praktiken**, die für neurodivergente Bedürfnisse entwickelt wurden
+- 🏠 **Hauspflege-Systeme**, die mit Exekutivfunktions-Herausforderungen funktionieren
+- 🍽️ **Mahlzeitenplanung**, die ADHS-freundlich ist
+- 💪 **Bewegungsroutinen**, die sensorische Bedürfnisse respektieren
+- 🌙 **Abend-Entspannung** für besseren Schlaf
+- 💝 **Selbstwertaufbau** mit evidenzbasierten Techniken
+
+**Jede Routine hier ist:**
+- ✅ **Von der Community getestet** - echte neurodivergente Menschen nutzen diese
+- ✅ **Wissenschaftlich fundiert** - basierend auf Forschung für ADHS, Autismus und Neurodivergenz
+- ✅ **Schrittweise progressiv** - beginne einfach, baue Komplexität natürlich auf
+- ✅ **Flexibel und anpassbar** - passe sie an deine einzigartigen Bedürfnisse an
+- ✅ **Mitfühlend** - keine Scham, kein Druck, nur sanfte Unterstützung
+
+---
+
+## 🚀 **Schnellstart**
+
+### **Für Niva-Nutzer**
+1. Durchsuche unsere [Routine-Beispiele](examples/), um zu finden, was dich interessiert
+2. Kopiere die JSON-Datei, die du ausprobieren möchtest
+3. Importiere sie in deinen Niva-Assistenten
+4. Passe die Parameter an dein Leben an
+5. Beginne mit der ersten Phase und lass Niva dich führen!
+
+### **Für Mitwirkende**
+1. Lies unseren [Anfänger-Guide](BEGINNERS_GUIDE.md), um Routine-Design zu verstehen
+2. Schau dir den [Routine-Design-Guide](ROUTINE_DESIGN_GUIDE.md) für fortgeschrittene Techniken an
+3. Überprüfe den [wissenschaftlichen Hintergrund](SCIENTIFIC_BACKGROUND.md) hinter unserem Ansatz
+4. Erstelle deine Routine nach unserem [Schema](routine-schema.json)
+5. Reiche einen Pull Request ein, um sie mit der Community zu teilen!
+
+---
+
+## 📚 **Ausgewählte Routinen**
+
+### 🌅 **Morgen- & Tagesroutinen**
+- **[ADHS-freundliche Morgenaktivierung](examples/adhd-morning-activation.json)** - Sanfte Aufwachroutine, die schrittweise aufbaut
+- **[Neurodivergentes Hauspflege-System](examples/neurodivergent-home-care-system.json)** - Vollständiges Hausmanagement-System
+- **[ADHS-freundliche Mahlzeitenplanung](examples/adhd-friendly-meal-planning.json)** - Wöchentliche Mahlzeitenplanung, die mit Exekutivfunktion funktioniert
+
+### 🧘‍♀️ **Selbstfürsorge & Wohlbefinden**
+- **[Autismus-Sensorik-Regulation](examples/autism-sensory-regulation.json)** - Sensorik-freundliche Selbstregulationspraktiken
+- **[Neurodivergente Schlafoptimierung](examples/neurodivergent-sleep-optimization.json)** - Besserer Schlaf für neurodivergente Gehirne
+- **[Bildschirmzeit-Regulation](examples/screen-time-regulation-neurodivergent.json)** - Gesunde digitale Gewohnheiten
+
+### 💪 **Bewegung & Gesundheit**
+- **[ADHS-freundliche Bewegungsroutine](examples/adhd-friendly-movement-routine.json)** - Bewegung, die mit ADHS-Energiemustern funktioniert
+- **[Exekutivfunktions-Unterstützung](examples/executive-function-support.json)** - Aufbau von Exekutivfunktions-Fähigkeiten
+
+### 💝 **Psychische Gesundheit & Selbstwert**
+- **[Selbstmitgefühl für neurodivergente Gehirne](examples/self-compassion-neurodivergent.json)** - Evidenzbasierte Selbstmitgefühl-Praktiken
+- **[Stärkenbasierter Selbstwert](examples/strength-based-self-esteem.json)** - Aufbau von Selbstvertrauen durch Stärken
+- **[Kognitive Umstrukturierung für Neurodivergenz](examples/cognitive-restructuring-neurodivergent.json)** - CBT-Techniken für neurodivergente Gehirne angepasst
+
+### 🎯 **Spezialisierte Unterstützung**
+- **[Gewohnheits-Stapel-Meisterschaft](examples/habit-stacking-mastery.json)** - Komplexe Routinen Schritt für Schritt aufbauen
+- **[Masking-Erholungsroutine](examples/masking-recovery-routine.json)** - Heilung von sozialem Masking
+- **[Neurodivergente soziale Pflege](examples/neurodivergent-social-maintenance.json)** - Soziale Verbindungen aufrechterhalten
+
+---
+
+## 🛠 **Wie Routinen funktionieren**
+
+### **Progressive Phasen**
+Jede Routine beginnt einfach und baut Komplexität natürlich auf:
+
+1. **Phase 1**: Einfache, erreichbare Schritte (z.B. "Wasser trinken")
+2. **Phase 2**: Fügt ein neues Element hinzu (z.B. "Wasser trinken + 2 Minuten Dehnen")
+3. **Phase 3**: Komplexere Integration (z.B. "Vollständige Morgenroutine")
+
+### **Intelligente Trigger**
+Routinen passen sich automatisch basierend auf deinem Fortschritt an:
+- **Vollständigkeitsbasiert**: "Nach 5 Mal dies tun, füge den nächsten Schritt hinzu"
+- **Zeitbasiert**: "Nach 7 Tagen führe die nächste Phase ein"
+- **Parameterbasiert**: "Wenn du bereit bist, füge dieses neue Element hinzu"
+
+### **Personalisierte Parameter**
+Jede Routine kann angepasst werden:
+- **Aufwachzeit**: Setze deine bevorzugte Morgenstartzeit
+- **Aktivitätspräferenzen**: Wähle, was für deine sensorischen Bedürfnisse funktioniert
+- **Dauer**: Passe Zeitverpflichtungen an deine Energieniveaus an
+- **Erinnerungen**: Setze wann und wie oft du sanfte Hinweise möchtest
+
+---
+
+## 🤝 **Tritt unserer Community bei**
+
+### **Teile deine Erfahrung**
+- 💬 **GitHub-Diskussionen**: [Teile deine Routine-Erfolgsgeschichten](https://github.com/Neurospicy-Niva/routines/discussions)
+- 📧 **E-Mail-Support**: [Hilfe bekommen](mailto:help@neurospicy.icu)
+- 🐛 **Probleme melden**: [Ein Problem gefunden? Lass es uns wissen](https://github.com/Neurospicy-Niva/routines/issues)
+
+### **Routinen beitragen**
+Wir begrüßen Routinen von allen! Ob du bist:
+- 🧠 **Eine neurodivergente Person**, die teilt, was für dich funktioniert
+- 🎓 **Ein Forscher**, der Erkenntnisse in praktische Routinen übersetzt
+- 🏥 **Ein Therapeut**, der klinische Techniken für den täglichen Gebrauch anpasst
+- 💡 **Ein kreativer Geist** mit innovativen Routine-Ideen
+
+### **Wie man beiträgt**
+1. **Forke dieses Repository**
+2. **Erstelle deine Routine** nach unserem [Schema](routine-schema.json)
+3. **Teste sie gründlich** mit realistischen Szenarien
+4. **Dokumentiere deinen Ansatz** in der Routinenbeschreibung
+5. **Reiche einen Pull Request** mit deinem Beitrag ein
+
+### **Qualitätsrichtlinien**
+- ✅ **Beginne einfach** - Erste Phasen sollten leicht erreichbar sein
+- ✅ **Baue schrittweise auf** - Jede Phase sollte sich wie ein natürlicher nächster Schritt anfühlen
+- ✅ **Sei mitfühlend** - Verwende ermutigende, nicht wertende Sprache
+- ✅ **Respektiere Vielfalt** - Berücksichtige verschiedene neurodivergente Erfahrungen
+- ✅ **Evidenzbasiert** - Begründe deine Routine in Forschung, wenn möglich
+
+---
+
+## 📖 **Ressourcen & Dokumentation**
+
+### **Für Routine-Ersteller**
+- [Routine-Design-Guide](ROUTINE_DESIGN_GUIDE.md) - Detaillierter Guide zum Erstellen von Routinen
+- [Wissenschaftlicher Hintergrund](SCIENTIFIC_BACKGROUND.md) - Forschung hinter unserem Ansatz
+- [Beispiele](examples/) - Durchsuche bestehende Routinen für Inspiration
+- [Schema-Referenz](routine-schema.json) - Technische Spezifikation
+
+### **Für Niva-Nutzer**
+- [Anfänger-Guide](BEGINNERS_GUIDE.md) - Wie man Routinen effektiv nutzt
+- [Variablen-Guide](VARIABLES.md) - Routine-Anpassung verstehen
+- [Fehlerbehebung](docs/troubleshooting.md) - Häufige Probleme und Lösungen
+
+### **Community-Support**
+- **GitHub Issues**: [Bugs melden oder Features anfordern](https://github.com/Neurospicy-Niva/routines/issues)
+- **GitHub Discussions**: [Community-Gespräche](https://github.com/Neurospicy-Niva/routines/discussions)
+- **E-Mail-Support**: [Hilfe bekommen](mailto:help@neurospicy.icu)
+
+---
+
+## 🎯 **Unsere Mission**
+
+Wir glauben, dass **jede neurodivergente Person Routinen verdient, die für ihr einzigartiges Gehirn funktionieren**. Dieses Repository ist mehr als nur Code - es ist eine Community von Menschen, die sich gegenseitig helfen, bessere Leben durch strukturierte, mitfühlende Unterstützung aufzubauen.
+
+**Jede Routine hier repräsentiert:**
+- 🧠 **Echte Erfahrungen** von neurodivergenten Community-Mitgliedern
+- 🔬 **Wissenschaftliche Forschung**, angepasst für praktischen täglichen Gebrauch
+- 💝 **Mitfühlendes Design**, das neurodivergente Bedürfnisse respektiert
+- 🌱 **Kontinuierliche Verbesserung** durch Community-Feedback
+
+---
+
+## 📜 **Lizenzierung**
+
+- **Routine-Templates**: [Creative Commons Attribution-ShareAlike 4.0](content-license.md) - Frei teilen und anpassen
+- **Code & Tools**: [MIT-Lizenz](LICENSE.md) - In jedem Projekt verwenden
+
+---
+
+## 🙏 **Danksagungen**
+
+Besonderer Dank an:
+- **Die neurodivergente Community** für das Teilen eurer Erfahrungen und Bedürfnisse
+- **Forscher und Kliniker**, deren Arbeit unser Routine-Design informiert
+- **Mitwirkende**, die dieses Repository jeden Tag besser machen
+- **Das Niva-Team** für den Aufbau der Plattform, die diese Routinen möglich macht
+
+---
+
+*Dieses Projekt ist Teil des [Niva KI-Assistenten](https://github.com/Neurospicy-Niva/fibi) - entwickelt von neurodivergenten Menschen, für neurodivergente Menschen.* 
