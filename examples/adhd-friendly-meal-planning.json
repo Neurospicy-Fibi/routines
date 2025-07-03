@@ -1,0 +1,258 @@
+{
+  "title": "ADHD-Friendly Meal Planning",
+  "version": "1.0",
+  "description": "A meal planning and food management routine designed for ADHD brains. Uses executive function supports, sensory-friendly approaches, and habit stacking to make meal planning sustainable and reduce decision fatigue.",
+  "setupSteps": [
+    {
+      "type": "parameter_request",
+      "question": "What's your biggest food-related challenge? (meal planning, grocery shopping, cooking, food waste, or all of the above)",
+      "parameterKey": "mainFoodChallenge",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What time of day do you have the most energy for food-related tasks?",
+      "parameterKey": "foodEnergyTime",
+      "parameterType": "LOCAL_TIME"
+    },
+    {
+      "type": "parameter_request",
+      "question": "How many meals do you want to plan for each week? (Start small - 3-5 is perfect!)",
+      "parameterKey": "mealsPerWeek",
+      "parameterType": "INT"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's your preferred grocery shopping method? (in-store, online delivery, pickup, or a mix)",
+      "parameterKey": "shoppingMethod",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's one food you always enjoy eating? (This will be your 'safe food' for when planning feels overwhelming)",
+      "parameterKey": "safeFood",
+      "parameterType": "STRING"
+    }
+  ],
+  "phases": [
+    {
+      "title": "Meal Planning Foundation",
+      "steps": [
+        {
+          "type": "message",
+          "message": "🍽️ Meal planning time! Let's work with your ${mainFoodChallenge} challenge using ADHD-friendly strategies.",
+          "timeOfDay": "${foodEnergyTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 Brain dump: Write down 3-5 foods you've enjoyed recently (no pressure to cook them, just capture what you like)",
+          "timeOfDay": "${foodEnergyTime}+PT2M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎯 Choose ONE meal to plan for this week (breakfast, lunch, or dinner - pick the easiest one)",
+          "timeOfDay": "${foodEnergyTime}+PT6M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📋 Simple planning: Pick 2-3 options for your chosen meal (include ${safeFood} as one option)",
+          "timeOfDay": "${foodEnergyTime}+PT9M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm taking care of my body!' (dopamine reward for your ADHD brain)",
+          "timeOfDay": "${foodEnergyTime}+PT13M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "WEEKLY"
+    },
+    {
+      "title": "Planning and Shopping Integration",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Meal Planning Foundation",
+        "times": 3
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🍽️ Meal planning and shopping time! Your brain is learning that food management can be simple and satisfying.",
+          "timeOfDay": "${foodEnergyTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 Quick meal review: Look at your previous plans and pick 2-3 meals that worked well",
+          "timeOfDay": "${foodEnergyTime}+PT2M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🛒 Shopping list creation: Write down ingredients for your chosen meals (keep it simple!)",
+          "timeOfDay": "${foodEnergyTime}+PT6M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📱 Set up ${shoppingMethod} for tomorrow (or schedule it for when you have energy)",
+          "timeOfDay": "${foodEnergyTime}+PT12M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm making food decisions easier for my ADHD brain!'",
+          "timeOfDay": "${foodEnergyTime}+PT16M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "WEEKLY"
+    },
+    {
+      "title": "Cooking and Food Management",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Planning and Shopping Integration",
+        "times": 4
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🍽️ Meal planning, shopping, and cooking time! Time to add food preparation to your routine.",
+          "timeOfDay": "${foodEnergyTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 Meal planning (your established routine)",
+          "timeOfDay": "${foodEnergyTime}+PT2M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🛒 Shopping list creation",
+          "timeOfDay": "${foodEnergyTime}+PT8M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🍳 Cooking prep: Choose ONE meal to prep ahead (cook once, eat multiple times)",
+          "timeOfDay": "${foodEnergyTime}+PT14M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📦 Food storage planning: Think about how to store leftovers to make future meals easier",
+          "timeOfDay": "${foodEnergyTime}+PT18M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm building a sustainable food system for my ADHD brain!'",
+          "timeOfDay": "${foodEnergyTime}+PT21M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "WEEKLY"
+    }
+  ],
+  "triggers": [
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Meal Planning Foundation",
+        "times": 2
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🧠 ADHD Brain Science: You're reducing decision fatigue by planning ahead! Your executive function is learning that food decisions can be made when you have energy, not when you're hungry and overwhelmed."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Meal Planning Foundation",
+        "times": 3
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🚀 Three weeks of meal planning! Your brain has formed the basic habit loop. Ready to add grocery shopping to your routine?"
+      }
+    },
+    {
+      "condition": {
+        "type": "PHASE_ENTERED",
+        "phaseTitle": "Planning and Shopping Integration"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🛒 Week 4! Time to integrate grocery shopping with your meal planning. Your ADHD brain is ready to take the next step!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Planning and Shopping Integration",
+        "times": 4
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎉 Your ADHD brain is loving this approach! You've successfully made meal planning and shopping sustainable. Ready to add cooking and food management?"
+      }
+    },
+    {
+      "condition": {
+        "type": "PHASE_ENTERED",
+        "phaseTitle": "Cooking and Food Management"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🍳 Week 8! Time to add cooking and food management to your routine. Your ADHD brain is ready to build a complete food system!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Cooking and Food Management",
+        "times": 6
+      },
+      "effect": {
+        "type": "CREATE_TASK",
+        "taskDescription": "Create your personalized meal planning toolkit: list your favorite easy recipes, grocery stores, and food prep strategies that work for your ADHD brain",
+        "parameterKey": "mealPlanningToolkitCreated",
+        "expiryDate": "2025-12-31T23:59:59Z"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DURATION",
+        "reference": "PHASE_ENTERED",
+        "duration": "PT72H"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "💡 ADHD Tip: Remember, the goal is to make food decisions easier, not perfect. If planning feels overwhelming, fall back to your ${safeFood} - that's why we included it!"
+      }
+    }
+  ]
+} 

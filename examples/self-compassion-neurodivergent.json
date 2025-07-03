@@ -1,0 +1,251 @@
+{
+  "title": "Self-Compassion for Neurodivergent Minds",
+  "version": "1.0",
+  "description": "A self-compassion routine based on Kristin Neff and Christopher Germer's research, designed for ADHD and autistic individuals. Uses evidence-based techniques to recognize self-criticism, develop a compassionate inner voice, and integrate self-compassion practices into daily life.",
+  "setupSteps": [
+    {
+      "type": "parameter_request",
+      "question": "What's your biggest self-compassion challenge? (recognizing self-criticism, being kind to yourself, or believing you deserve compassion)",
+      "parameterKey": "mainCompassionChallenge",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What time of day do you feel most open to self-reflection?",
+      "parameterKey": "compassionTime",
+      "parameterType": "LOCAL_TIME"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's your preferred way to practice self-compassion? (writing, speaking out loud, meditation, or physical gestures)",
+      "parameterKey": "compassionMethod",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What helps you feel safe and supported? (specific phrase, physical gesture, memory, or person)",
+      "parameterKey": "safetyAnchor",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's one thing you'd say to comfort a close friend who was struggling? (This will be your 'compassion template')",
+      "parameterKey": "compassionTemplate",
+      "parameterType": "STRING"
+    }
+  ],
+  "phases": [
+    {
+      "title": "Self-Criticism Awareness",
+      "steps": [
+        {
+          "type": "message",
+          "message": "💛 Self-compassion time! Let's work with your ${mainCompassionChallenge} using evidence-based strategies designed for neurodivergent brains.",
+          "timeOfDay": "${compassionTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 Self-criticism check: Use your ${compassionMethod} to identify one self-critical thought you had today (no judgment, just awareness)",
+          "timeOfDay": "${compassionTime}+PT2M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔍 Origin exploration: Where might this inner tone come from? (past experiences, neurotypical expectations, etc.)",
+          "timeOfDay": "${compassionTime}+PT6M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "💭 Emotional needs: What would you have needed emotionally in that moment? (understanding, support, patience, etc.)",
+          "timeOfDay": "${compassionTime}+PT10M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm learning to recognize my self-criticism with kindness!' (your neurodivergent brain is building awareness)",
+          "timeOfDay": "${compassionTime}+PT14M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Compassionate Voice Development",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Self-Criticism Awareness",
+        "times": 5
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "💛 Self-compassion time! Your brain is learning to recognize self-criticism. Time to develop your compassionate voice.",
+          "timeOfDay": "${compassionTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "👥 Friend perspective: Imagine a friend having the same self-critical thought. What would you say to comfort them?",
+          "timeOfDay": "${compassionTime}+PT2M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "💌 Self-message: Now write that same comforting message as if you were writing to yourself (use your ${compassionTemplate} as inspiration)",
+          "timeOfDay": "${compassionTime}+PT6M",
+          "expectedDurationMinutes": 4,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔊 Compassion practice: Read your message out loud or silently using your ${compassionMethod} and notice your emotional reaction",
+          "timeOfDay": "${compassionTime}+PT11M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm developing a kind inner voice!' (your neurodivergent brain is building self-compassion)",
+          "timeOfDay": "${compassionTime}+PT15M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Self-Compassion Integration",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Compassionate Voice Development",
+        "times": 4
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "💛 Self-compassion time! Time to integrate self-compassion into your daily life.",
+          "timeOfDay": "${compassionTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌅 Morning affirmations: Say 3 compassionate affirmations to yourself (e.g., 'I'm a human being with flaws and strengths - and that's okay')",
+          "timeOfDay": "${compassionTime}",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🤗 Throughout the day: When you need it, place your hand on your heart and repeat one of your affirmations (use your ${safetyAnchor} for support)",
+          "timeOfDay": "${compassionTime}+PT4M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌙 Evening compassion review: How did your day go? Were there moments when you were kind to yourself? (no pressure to be perfect)",
+          "timeOfDay": "20:00",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm building a compassionate relationship with myself!' (your neurodivergent brain is learning self-acceptance)",
+          "timeOfDay": "20:06",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    }
+  ],
+  "triggers": [
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Self-Criticism Awareness",
+        "times": 3
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🧠 Neurodivergent Brain Science: You're building self-awareness without judgment! Your brain is learning to recognize self-criticism patterns and understand their origins."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Self-Criticism Awareness",
+        "times": 5
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🚀 Five days of self-criticism awareness! Your brain has formed the basic recognition habit. Ready to develop your compassionate voice?"
+      }
+    },
+    {
+      "condition": {
+        "type": "PHASE_ENTERED",
+        "phaseTitle": "Compassionate Voice Development"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "💛 Week 2! Time to develop your compassionate voice. Your neurodivergent brain is ready to build self-kindness!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Compassionate Voice Development",
+        "times": 4
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎉 Your neurodivergent brain is loving this approach! You've successfully learned to recognize self-criticism and develop compassion. Ready to integrate self-compassion into daily life?"
+      }
+    },
+    {
+      "condition": {
+        "type": "PHASE_ENTERED",
+        "phaseTitle": "Self-Compassion Integration"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "💛 Week 3! Time to integrate self-compassion into daily life. Your neurodivergent brain is ready to build lasting self-kindness!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Self-Compassion Integration",
+        "times": 7
+      },
+      "effect": {
+        "type": "CREATE_TASK",
+        "taskDescription": "Create your personalized self-compassion toolkit: list your favorite affirmations, compassion practices, and self-kindness strategies that work for your neurodivergent brain",
+        "parameterKey": "selfCompassionToolkitCreated",
+        "expiryDate": "2025-12-31T23:59:59Z"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DURATION",
+        "reference": "PHASE_ENTERED",
+        "duration": "PT72H"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "💡 Neurodivergent Tip: Remember, self-compassion is a skill that takes practice! Your brain is learning to be kind to itself. If you slip into self-criticism, use your ${safetyAnchor} and start fresh."
+      }
+    }
+  ]
+} 

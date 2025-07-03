@@ -1,0 +1,231 @@
+{
+  "title": "Neurodivergent Home Care System",
+  "version": "1.0",
+  "description": "A comprehensive home care routine designed for ADHD and autistic individuals. Uses micro-tasks, sensory-friendly approaches, and habit stacking to make household management sustainable and less overwhelming.",
+  "setupSteps": [
+    {
+      "type": "parameter_request",
+      "question": "What's your biggest household challenge? (cleaning, organizing, maintenance, or all of the above)",
+      "parameterKey": "mainHouseholdChallenge",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What time of day do you have the most energy for household tasks?",
+      "parameterKey": "householdEnergyTime",
+      "parameterType": "LOCAL_TIME"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What sensory experience helps you feel motivated? (music, audiobook, podcast, silence, specific lighting)",
+      "parameterKey": "motivationSensory",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's one small household task you already do consistently? (e.g., make bed, wash dishes, feed pets)",
+      "parameterKey": "existingHouseholdHabit",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "How many minutes can you realistically dedicate to household tasks each day? (Be honest - start small!)",
+      "parameterKey": "dailyHouseholdMinutes",
+      "parameterType": "INT"
+    }
+  ],
+  "phases": [
+    {
+      "title": "Daily Maintenance Foundation",
+      "steps": [
+        {
+          "type": "message",
+          "message": "🏠 Home care time! Let's work with your ${mainHouseholdChallenge} challenge using neurodivergent-friendly strategies.",
+          "timeOfDay": "${householdEnergyTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎵 Set up your ${motivationSensory} - this creates a positive association with household tasks",
+          "timeOfDay": "${householdEnergyTime}+PT2M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔗 Habit stack: After your ${existingHouseholdHabit}, do ONE small household task (2-5 minutes max)",
+          "timeOfDay": "${householdEnergyTime}+PT5M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: Say 'I'm taking care of my space!' (dopamine reward for your neurodivergent brain)",
+          "timeOfDay": "${householdEnergyTime}+PT11M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Micro-Task Integration",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Daily Maintenance Foundation",
+        "times": 7
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🏠 Week 2! Your brain is learning that household tasks can feel good.",
+          "timeOfDay": "${householdEnergyTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎵 ${motivationSensory} setup (becoming automatic!)",
+          "timeOfDay": "${householdEnergyTime}+PT2M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔗 ${existingHouseholdHabit} → 2 small tasks (building your habit stack)",
+          "timeOfDay": "${householdEnergyTime}+PT5M",
+          "expectedDurationMinutes": 8,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 Quick scan: Look around and identify ONE thing that would make you feel better (no pressure to do it now)",
+          "timeOfDay": "${householdEnergyTime}+PT14M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration ritual (your brain loves this pattern!)",
+          "timeOfDay": "${householdEnergyTime}+PT17M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Weekly Deep Care System",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Micro-Task Integration",
+        "times": 10
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🏠 Week 3! Time to add weekly deep care while maintaining your daily habits.",
+          "timeOfDay": "${householdEnergyTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎵 ${motivationSensory} + daily micro-tasks (your established routine)",
+          "timeOfDay": "${householdEnergyTime}+PT2M",
+          "expectedDurationMinutes": 8,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📋 Weekly planning: Choose ONE room/area for deeper attention this week (kitchen, bathroom, bedroom, living room)",
+          "timeOfDay": "${householdEnergyTime}+PT11M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧹 Deep care session: Spend ${dailyHouseholdMinutes} minutes on your chosen area (break into 5-minute chunks if needed)",
+          "timeOfDay": "${householdEnergyTime}+PT15M",
+          "expectedDurationMinutes": 15,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎯 Progress tracking: Notice how your space feels different after consistent care",
+          "timeOfDay": "${householdEnergyTime}+PT31M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm creating a space that supports my neurodivergent brain!'",
+          "timeOfDay": "${householdEnergyTime}+PT34M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "WEEKLY"
+    }
+  ],
+  "triggers": [
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Daily Maintenance Foundation",
+        "times": 3
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🧠 Neurodivergent Brain Science: You're building neural pathways that associate household tasks with positive feelings! Your brain is learning that taking care of your space feels good."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Daily Maintenance Foundation",
+        "times": 7
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🚀 One week of consistent home care! Your brain has formed the basic habit loop. Ready to add more micro-tasks to your routine?"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Micro-Task Integration",
+        "times": 10
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎉 Your neurodivergent brain is loving this approach! You've successfully made household care sustainable. Ready to add weekly deep care sessions?"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Weekly Deep Care System",
+        "times": 4
+      },
+      "effect": {
+        "type": "CREATE_TASK",
+        "taskDescription": "Create your personalized household care toolkit: list your favorite cleaning products, tools, and strategies that work for your neurodivergent brain",
+        "parameterKey": "householdToolkitCreated",
+        "expiryDate": "2025-12-31T23:59:59Z"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DURATION",
+        "reference": "PHASE_ENTERED",
+        "duration": "PT72H"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "💡 Neurodivergent Tip: Remember, your space should work FOR your brain, not against it. If a task feels overwhelming, break it into smaller pieces or save it for another day."
+      }
+    }
+  ]
+} 

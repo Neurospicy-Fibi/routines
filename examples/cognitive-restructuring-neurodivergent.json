@@ -1,0 +1,251 @@
+{
+  "title": "Cognitive Restructuring for Neurodivergent Minds",
+  "version": "1.0",
+  "description": "A cognitive behavioral therapy (CBT) routine designed for ADHD and autistic individuals. Uses evidence-based techniques to recognize automatic thoughts, identify thinking distortions, and build healthier thinking patterns that support neurodivergent brains.",
+  "setupSteps": [
+    {
+      "type": "parameter_request",
+      "question": "What's your biggest thinking challenge? (self-criticism, catastrophizing, black-and-white thinking, or all of the above)",
+      "parameterKey": "mainThinkingChallenge",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What time of day do you have the most mental energy for reflection?",
+      "parameterKey": "reflectionTime",
+      "parameterType": "LOCAL_TIME"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's your preferred way to capture thoughts? (paper journal, phone notes, voice memos, or specific app)",
+      "parameterKey": "thoughtCaptureMethod",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What helps you feel calm when thoughts become overwhelming? (breathing, movement, sensory tool, specific phrase)",
+      "parameterKey": "calmingTool",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's one small win you've had recently? (This will be your 'evidence anchor' for challenging negative thoughts)",
+      "parameterKey": "evidenceAnchor",
+      "parameterType": "STRING"
+    }
+  ],
+  "phases": [
+    {
+      "title": "Thought Observation Foundation",
+      "steps": [
+        {
+          "type": "message",
+          "message": "🧠 Cognitive restructuring time! Let's work with your ${mainThinkingChallenge} using CBT strategies designed for neurodivergent brains.",
+          "timeOfDay": "${reflectionTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 Thought capture: Use your ${thoughtCaptureMethod} to write down one moment today when you criticized yourself (no judgment, just observation)",
+          "timeOfDay": "${reflectionTime}+PT2M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "💭 Thought analysis: What exactly did you think about yourself in that moment? Write the exact words you used",
+          "timeOfDay": "${reflectionTime}+PT8M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📊 Belief strength: Rate how strongly you believed this thought (1-10 scale) - this helps your brain recognize thought patterns",
+          "timeOfDay": "${reflectionTime}+PT14M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm learning to observe my thoughts without judgment!' (your neurodivergent brain is building awareness)",
+          "timeOfDay": "${reflectionTime}+PT17M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Distortion Recognition",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Thought Observation Foundation",
+        "times": 7
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🧠 Cognitive restructuring time! Your brain is learning to recognize thinking patterns. Time to identify distortions.",
+          "timeOfDay": "${reflectionTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔍 Pattern review: Look at your recorded thoughts from the past week - do you notice any patterns? (black-and-white thinking, catastrophizing, etc.)",
+          "timeOfDay": "${reflectionTime}+PT2M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⚖️ Evidence gathering: Pick one common thought and write down evidence FOR and AGAINST it (your brain needs balance)",
+          "timeOfDay": "${reflectionTime}+PT8M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔄 Thought rewriting: Rewrite your chosen thought into a more balanced alternative (include your ${evidenceAnchor} as evidence)",
+          "timeOfDay": "${reflectionTime}+PT14M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm learning to think more flexibly!' (your neurodivergent brain is building cognitive flexibility)",
+          "timeOfDay": "${reflectionTime}+PT18M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "New Thinking Habits",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Distortion Recognition",
+        "times": 4
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "🧠 Cognitive restructuring time! Time to build new thinking habits that support your neurodivergent brain.",
+          "timeOfDay": "${reflectionTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📖 Morning affirmation: Read one of your balanced thoughts out loud and write it down (this trains your brain)",
+          "timeOfDay": "${reflectionTime}",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎯 Throughout the day: Notice when you can apply this new thought (no pressure, just awareness)",
+          "timeOfDay": "${reflectionTime}+PT4M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🌙 Evening review: When did you apply your new thought today? How did it feel? (use your ${calmingTool} if needed)",
+          "timeOfDay": "20:00",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm building thinking patterns that support my neurodivergent brain!'",
+          "timeOfDay": "20:06",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    }
+  ],
+  "triggers": [
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Thought Observation Foundation",
+        "times": 3
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🧠 Neurodivergent Brain Science: You're building metacognition - the ability to observe your own thoughts! Your brain is learning to recognize patterns without getting caught in them."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Thought Observation Foundation",
+        "times": 7
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🚀 One week of thought observation! Your brain has formed the basic awareness habit. Ready to identify thinking distortions?"
+      }
+    },
+    {
+      "condition": {
+        "type": "PHASE_ENTERED",
+        "phaseTitle": "Distortion Recognition"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🧠 Week 2! Time to identify thinking distortions. Your neurodivergent brain is ready to recognize cognitive patterns!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Distortion Recognition",
+        "times": 4
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎉 Your neurodivergent brain is loving this approach! You've successfully learned to recognize thinking patterns. Ready to build new thinking habits?"
+      }
+    },
+    {
+      "condition": {
+        "type": "PHASE_ENTERED",
+        "phaseTitle": "New Thinking Habits"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🧠 Week 3! Time to build new thinking habits. Your neurodivergent brain is ready to develop cognitive flexibility!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "New Thinking Habits",
+        "times": 7
+      },
+      "effect": {
+        "type": "CREATE_TASK",
+        "taskDescription": "Create your personalized cognitive toolkit: list your common thinking distortions, balanced alternatives, and evidence anchors that work for your neurodivergent brain",
+        "parameterKey": "cognitiveToolkitCreated",
+        "expiryDate": "2025-12-31T23:59:59Z"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DURATION",
+        "reference": "PHASE_ENTERED",
+        "duration": "PT72H"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "💡 Neurodivergent Tip: Remember, thoughts are just thoughts - they're not facts! Your brain is learning to be more flexible. If you slip into old patterns, use your ${calmingTool} and start fresh."
+      }
+    }
+  ]
+} 

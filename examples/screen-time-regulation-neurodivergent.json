@@ -1,0 +1,272 @@
+{
+  "title": "Screen Time Regulation for Neurodivergent Minds",
+  "version": "1.0",
+  "description": "A digital wellness routine designed for ADHD and autistic individuals. Uses evidence-based strategies to prevent doom scrolling, reduce screen time overwhelm, and build healthy tech habits that support rather than drain neurodivergent brains.",
+  "setupSteps": [
+    {
+      "type": "parameter_request",
+      "question": "What's your biggest digital challenge? (doom scrolling, social media overuse, work screen time, gaming, or all of the above)",
+      "parameterKey": "mainDigitalChallenge",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What time of day do you want to start reducing screen time? (e.g., evening wind-down, work breaks, or specific hours)",
+      "parameterKey": "screenReductionTime",
+      "parameterType": "LOCAL_TIME"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's one offline activity you enjoy? (reading, walking, crafting, music, etc.)",
+      "parameterKey": "offlineActivity",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "How many minutes do you want to reduce your daily screen time by? (Start small - 15-30 minutes is perfect!)",
+      "parameterKey": "screenReductionMinutes",
+      "parameterType": "INT"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What helps you feel grounded when you're overwhelmed? (breathing, movement, sensory tool, specific phrase)",
+      "parameterKey": "groundingTool",
+      "parameterType": "STRING"
+    }
+  ],
+  "phases": [
+    {
+      "title": "Digital Awareness Foundation",
+      "steps": [
+        {
+          "type": "message",
+          "message": "📱 Digital wellness time! Let's work with your ${mainDigitalChallenge} using neurodivergent-friendly strategies.",
+          "timeOfDay": "${screenReductionTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧠 Digital check-in: Notice how you feel right now (energized, drained, anxious, calm) - no judgment, just awareness",
+          "timeOfDay": "${screenReductionTime}+PT2M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⏰ Set a 15-minute timer for your next screen session (this trains your brain to be more intentional)",
+          "timeOfDay": "${screenReductionTime}+PT5M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔄 Transition practice: When timer goes off, use your ${groundingTool} for 2 minutes before deciding to continue or stop",
+          "timeOfDay": "${screenReductionTime}+PT7M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm being intentional about my digital use!' (dopamine reward for your neurodivergent brain)",
+          "timeOfDay": "${screenReductionTime}+PT10M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Offline Activity Integration",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Digital Awareness Foundation",
+        "times": 7
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "📱 Digital wellness and offline activity time! Your brain is learning to be more intentional about screen time.",
+          "timeOfDay": "${screenReductionTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧠 Digital check-in (your established awareness practice)",
+          "timeOfDay": "${screenReductionTime}+PT2M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⏰ 15-minute timer set (building intentionality)",
+          "timeOfDay": "${screenReductionTime}+PT5M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔄 ${groundingTool} transition ritual",
+          "timeOfDay": "${screenReductionTime}+PT7M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎨 Offline activity: Spend ${screenReductionMinutes} minutes doing your ${offlineActivity} (this replaces some screen time)",
+          "timeOfDay": "${screenReductionTime}+PT10M",
+          "expectedDurationMinutes": 15,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm balancing digital and offline activities!'",
+          "timeOfDay": "${screenReductionTime}+PT26M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    },
+    {
+      "title": "Digital Wellness Mastery",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Offline Activity Integration",
+        "times": 10
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "📱 Digital wellness mastery time! Time to build a comprehensive digital wellness system.",
+          "timeOfDay": "${screenReductionTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🧠 Digital check-in + awareness practice",
+          "timeOfDay": "${screenReductionTime}+PT2M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⏰ Intentional timer setting",
+          "timeOfDay": "${screenReductionTime}+PT5M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔄 ${groundingTool} transition ritual",
+          "timeOfDay": "${screenReductionTime}+PT7M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🎨 ${offlineActivity} session (${screenReductionMinutes} minutes)",
+          "timeOfDay": "${screenReductionTime}+PT10M",
+          "expectedDurationMinutes": 15,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📊 Digital wellness review: Notice how your mood and energy feel different with more balanced screen time",
+          "timeOfDay": "${screenReductionTime}+PT26M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm creating a digital life that supports my neurodivergent brain!'",
+          "timeOfDay": "${screenReductionTime}+PT30M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "DAILY"
+    }
+  ],
+  "triggers": [
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Digital Awareness Foundation",
+        "times": 3
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🧠 Neurodivergent Brain Science: You're building awareness of how digital use affects your nervous system! Your brain is learning to recognize when screen time is supporting vs. draining you."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Digital Awareness Foundation",
+        "times": 7
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🚀 One week of digital awareness! Your brain has formed the basic habit loop. Ready to add offline activities to your routine?"
+      }
+    },
+    {
+      "condition": {
+        "type": "PHASE_ENTERED",
+        "phaseTitle": "Offline Activity Integration"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎨 Week 2! Time to integrate offline activities with your digital awareness. Your neurodivergent brain is ready to find balance!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Offline Activity Integration",
+        "times": 10
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎉 Your neurodivergent brain is loving this balance! You've successfully made digital wellness sustainable. Ready to master your digital wellness system?"
+      }
+    },
+    {
+      "condition": {
+        "type": "PHASE_ENTERED",
+        "phaseTitle": "Digital Wellness Mastery"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "📱 Week 3! Time to build a comprehensive digital wellness system. Your neurodivergent brain is ready to master digital balance!"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Digital Wellness Mastery",
+        "times": 14
+      },
+      "effect": {
+        "type": "CREATE_TASK",
+        "taskDescription": "Create your personalized digital wellness toolkit: list your favorite offline activities, grounding tools, and screen time strategies that work for your neurodivergent brain",
+        "parameterKey": "digitalWellnessToolkitCreated",
+        "expiryDate": "2025-12-31T23:59:59Z"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DURATION",
+        "reference": "PHASE_ENTERED",
+        "duration": "PT72H"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "💡 Neurodivergent Tip: Remember, the goal is digital wellness, not digital perfection. Your brain needs both connection and rest. If you slip up, use your ${groundingTool} and start fresh!"
+      }
+    }
+  ]
+} 

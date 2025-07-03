@@ -1,0 +1,252 @@
+{
+  "title": "Neurodivergent Social Maintenance",
+  "version": "1.0",
+  "description": "A social connection routine designed for ADHD and autistic individuals. Uses energy management, low-pressure approaches, and neurodivergent-friendly communication strategies to maintain friendships and social connections without overwhelm.",
+  "setupSteps": [
+    {
+      "type": "parameter_request",
+      "question": "What's your biggest social challenge? (initiating contact, maintaining friendships, social energy management, or all of the above)",
+      "parameterKey": "mainSocialChallenge",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What time of day do you have the most social energy?",
+      "parameterKey": "socialEnergyTime",
+      "parameterType": "LOCAL_TIME"
+    },
+    {
+      "type": "parameter_request",
+      "question": "How many close friends do you want to maintain regular contact with? (Start small - 2-3 is perfect!)",
+      "parameterKey": "friendCount",
+      "parameterType": "INT"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What's your preferred way to connect with friends? (text, call, video chat, in-person, or a mix)",
+      "parameterKey": "preferredContactMethod",
+      "parameterType": "STRING"
+    },
+    {
+      "type": "parameter_request",
+      "question": "What helps you recharge after social interactions? (alone time, specific activity, sensory tool, etc.)",
+      "parameterKey": "socialRechargeTool",
+      "parameterType": "STRING"
+    }
+  ],
+  "phases": [
+    {
+      "title": "Social Connection Foundation",
+      "steps": [
+        {
+          "type": "message",
+          "message": "👥 Social maintenance time! Let's work with your ${mainSocialChallenge} using neurodivergent-friendly strategies.",
+          "timeOfDay": "${socialEnergyTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 Friend check-in: Think of ${friendCount} friends you want to stay connected with (no pressure to contact them yet)",
+          "timeOfDay": "${socialEnergyTime}+PT2M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "💭 Choose ONE friend to reach out to this week (pick the one that feels easiest)",
+          "timeOfDay": "${socialEnergyTime}+PT6M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📱 Send a simple message: 'Hey! Thinking of you. How are you doing?' (keep it low-pressure)",
+          "timeOfDay": "${socialEnergyTime}+PT9M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm maintaining my social connections!' (dopamine reward for your neurodivergent brain)",
+          "timeOfDay": "${socialEnergyTime}+PT12M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "WEEKLY"
+    },
+    {
+      "title": "Social Energy Management",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Social Connection Foundation",
+        "times": 3
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "👥 Week 4! Your brain is learning that social connections can be manageable and rewarding.",
+          "timeOfDay": "${socialEnergyTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 Friend check-in: Review your ${friendCount} friends and choose one to contact",
+          "timeOfDay": "${socialEnergyTime}+PT2M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📱 Send a message using your ${preferredContactMethod}",
+          "timeOfDay": "${socialEnergyTime}+PT6M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⚡ Social energy check: Notice how you feel after reaching out (energized, drained, neutral)",
+          "timeOfDay": "${socialEnergyTime}+PT9M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔄 Recharge ritual: Use your ${socialRechargeTool} for 5 minutes (honor your social energy needs)",
+          "timeOfDay": "${socialEnergyTime}+PT12M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm managing my social energy wisely!'",
+          "timeOfDay": "${socialEnergyTime}+PT18M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "WEEKLY"
+    },
+    {
+      "title": "Social Connection Mastery",
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Social Energy Management",
+        "times": 4
+      },
+      "steps": [
+        {
+          "type": "message",
+          "message": "👥 Week 8! Time to build a comprehensive social maintenance system.",
+          "timeOfDay": "${socialEnergyTime}",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📝 Friend check-in and selection",
+          "timeOfDay": "${socialEnergyTime}+PT2M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📱 Contact using ${preferredContactMethod}",
+          "timeOfDay": "${socialEnergyTime}+PT6M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "⚡ Social energy awareness",
+          "timeOfDay": "${socialEnergyTime}+PT9M",
+          "expectedDurationMinutes": 2,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "🔄 ${socialRechargeTool} recharge ritual",
+          "timeOfDay": "${socialEnergyTime}+PT12M",
+          "expectedDurationMinutes": 5,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "📊 Social wellness review: Notice how maintaining connections affects your overall wellbeing",
+          "timeOfDay": "${socialEnergyTime}+PT18M",
+          "expectedDurationMinutes": 3,
+          "expectConfirmation": true
+        },
+        {
+          "type": "action",
+          "message": "✅ Celebration: 'I'm building a social life that works for my neurodivergent brain!'",
+          "timeOfDay": "${socialEnergyTime}+PT22M",
+          "expectedDurationMinutes": 1,
+          "expectConfirmation": true
+        }
+      ],
+      "schedule": "WEEKLY"
+    }
+  ],
+  "triggers": [
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Social Connection Foundation",
+        "times": 2
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🧠 Neurodivergent Brain Science: You're building social connection habits that work with your brain! Your nervous system is learning that social contact can be manageable and rewarding."
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Social Connection Foundation",
+        "times": 3
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🚀 Three weeks of social maintenance! Your brain has formed the basic habit loop. Ready to add social energy management to your routine?"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Social Energy Management",
+        "times": 4
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "🎉 Your neurodivergent brain is loving this approach! You've successfully made social connections sustainable. Ready to master your social maintenance system?"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_PHASE_COMPLETIONS",
+        "phaseTitle": "Social Connection Mastery",
+        "times": 6
+      },
+      "effect": {
+        "type": "CREATE_TASK",
+        "taskDescription": "Create your personalized social maintenance toolkit: list your favorite ways to connect, recharge strategies, and social energy management techniques that work for your neurodivergent brain",
+        "parameterKey": "socialMaintenanceToolkitCreated",
+        "expiryDate": "2025-12-31T23:59:59Z"
+      }
+    },
+    {
+      "condition": {
+        "type": "AFTER_DURATION",
+        "reference": "PHASE_ENTERED",
+        "duration": "PT72H"
+      },
+      "effect": {
+        "type": "SEND_MESSAGE",
+        "message": "💡 Neurodivergent Tip: Remember, quality over quantity! Your brain thrives on meaningful connections, not social obligations. If you need to skip a week, that's okay - your friends will understand."
+      }
+    }
+  ]
+} 
