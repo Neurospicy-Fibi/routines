@@ -137,6 +137,7 @@
         { "$ref": "#/definitions/afterPhaseCompletionsCondition" },
         { "$ref": "#/definitions/afterDurationCondition" },
         { "$ref": "#/definitions/afterEventCondition" },
+        { "$ref": "#/definitions/phaseEnteredCondition" },
         { "$ref": "#/definitions/afterParameterSetCondition" }
       ]
     },
@@ -181,6 +182,19 @@
           "type": "string",
           "pattern": "^PT\\d+[HMS]$",
           "description": "ISO 8601 duration (e.g., 'PT15M', 'PT2H')"
+        }
+      }
+    },
+    "phaseEnteredCondition": {
+      "type": "object",
+      "required": ["type", "phaseTitle"],
+      "properties": {
+        "type": { "const": "PHASE_ENTERED" },
+        "phaseTitle": { "type": "string" },
+        "duration": { 
+          "type": "string",
+          "pattern": "^PT\\d+[HMS]$",
+          "description": "Duration after entering the phase"
         }
       }
     },
